@@ -1,26 +1,266 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ***************************** VARIABLES ******************************* */
+/* ======= COLOR ========= */
+
+@theme{
+
+  /* font family */
+  --font-inter: "Inter", sans-serif;
+  --font-manrope: "Manrope", sans-serif;
+
+  /* primary color blue  */
+   --color-primary-blue:#2563EB;
+   --color-blue-50:#EEF0FE;
+   --color-blue-100:#D9DEFD;
+   --color-blue-200:#B2BEFB;
+   --color-blue-300:#8DA1F9;
+   --color-blue-400:#5F81F6;
+   --color-blue-500:#2563EB;
+   --color-blue-600:#1C4FBE;
+   --color-blue-700:#133C94;
+   --color-blue-800:#0A2767;
+   --color-blue-900:#041642;
+   --color-blue-950:#020E30;
+
+   /* Primary Success Green */
+  --color-primary-success:#16A34A;
+  --color-success-50:#D2FFDA;
+  --color-success-100:#97FEAE;
+  --color-success-200:#26F070;
+  --color-success-300:#20D462;
+  --color-success-400:#1BBB56;
+  --color-success-500:#16A34A;
+  --color-success-600:#0F8139;
+  --color-success-700:#086028;
+  --color-success-800:#01260C;
+  --color-success-900:#002108;
+  --color-success-950:#011806;
+
+  /* Primary Warning Yellow */
+  --color-primary-warning:#F59E0B;
+  --color-warning-50:#FFF5EE;
+  --color-warning-100:#FFEADC;
+  --color-warning-200:#FFD8BD;
+  --color-warning-300:#FFC390;
+  --color-warning-400:#FFB15B;
+  --color-warning-500:#F59E0B;
+  --color-warning-600:#C27C07;
+  --color-warning-700:#8F5A03;
+  --color-warning-800:#623C01;
+  --color-warning-900:#351F00;
+  --color-warning-950:#221200;
+
+  /* Primary Danger Red */
+  --color-primary-danger:#DC2626;
+  --color-danger-50:#FDEDED;
+  --color-danger-100:#FCDBDB;
+  --color-danger-200:#DC2626;
+  --color-danger-300:#F55252;
+  --color-danger-400:#DC2626;
+  --color-danger-500:#DC2626;
+  --color-danger-600:#AF1C1C;
+  --color-danger-700:#891414;
+  --color-danger-800:#600A0A;
+  --color-danger-900:#3E0404;
+  --color-danger-950:#2B0202;
+
+  /* Text Color */
+  --color-subtext-primary-color:#343A40;
+  --color-subtext-gray1:#8E8E93;
+  --color-subtext-gray2:#AEAEB2;
+  --color-subtext-gray3:#8D9296;
+  --color-subtext-light:#727272;
+  --color-label1:#3C3C43;
+  --color-title-primary-color:#090D12;
+  --color-text-secondary-color:#556072;
+  --color-button-text-color:#FFFFFF;
+  --color-toogle:#B3B3B3;
+  --color-placeholder_stroke:#E3E8EF;
+
+
+  /* background color */
+  --color-separator1:#EDF3FA;
+  --color-separator2:#F2F2F2;
+  --color-separator3:#F8F9FA;
+
+
+  /* font size */
+  --text-xxs:4px;
+  --text-xs:8px;
+  --text-vxs:12px;
+  --text-xs:14px;
+  --text-sm:16px;
+  --text-md:18px;
+  --text-lg:20px;
+  --text-lg-xl:24px;
+  --text-xl:28px;
+  --text-2xl:32px;
+  --text-3xl:36px;
+  --text-4xl:40px;
+  --text-5xl:42px;
+
+
+  /* font weight */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
+  /* line-height desktop */
+  --line-height-xs: 1.42;
+  --line-height-sm: 1.60;
+  --line-height-md: 1.6;
+  --line-height-lg: 1.36;
+  --line-height-xl: 1.2;
+  --line-height-2xl: 1.35;
+  --line-height-3xl: 1.2;
+  --line-height-4xl: 1.36;
+  --line-height-5xl: 1.2;
+  --line-height-6xl: 1.2;
+
+  /* line height tablet */
+  --line-height-xs-t: 1.42;
+  --line-height-sm-t: 1.42;
+  --line-height-md-t: 1.48;
+  --line-height-lg-t: 1.2;
+  --line-height-xl-t: 1.2;
+  --line-height-2xl-t: 1.2;
+  --line-height-3xl-t: 1.2;
+  --line-height-4xl-t: 1.2;
+  --line-height-5xl-t: 1.2;
+
+  /* line height mobile */
+  --line-height-xs-m: 1.42;
+  --line-height-sm-m: 1.42;
+  --line-height-md-m: 1.48;
+  --line-height-lg-m: 1.2;
+  --line-height-xl-m: 1.2;
+  --line-height-2xl-m: 1.2;
+  --line-height-3xl-m: 1.2;
+  --line-height-4xl-m: 1.2;
+  --line-height-5xl-m: 1.2;
+
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+
+
+html,
+body {
+  height: 100%;
+  width: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font-inter);
 }
+
+
+
+/* ================================
+   Layout
+================================ */
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-right: 24px;
+  padding-left: 24px;
+}
+
+h1, h2, h3, h4, h5, h6{
+  font-family: var(--font-manrope);
+}
+
+.slick-track {
+  display: flex !important;
+}
+
+.slick-slide {
+  height: auto !important;
+  display: flex !important;
+}
+
+.slick-slide > div {
+  display: flex;
+  width: 100%;
+  margin: 0 12px;
+}
+
+@media (max-width: 768px) {
+  .slick-slide {
+    width: 280px !important;
+    /* margin-right: 32px !important; */
+  }
+}
+
+
+.max-w-824{
+  max-width: 824px;
+}
+
+
+/*=====================
+      scrollbar 
+======================*/
+.custom-scroll::-webkit-scrollbar {
+  width: 4px;
+
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: transparent;
+
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1; /* light gray */
+  border-radius: 9999px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: #94a3b8; /* darker on hover */
+}
+
+/* Firefox */
+.custom-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* =========== SKELETON HOME PAGE EFFECT CODE HERE =========== */
+/* globals.css */
+@keyframes shimmer {
+  0% {
+    background-position: -700px 0;
+  }
+  100% {
+    background-position: 700px 0;
+  }
+}
+
+.skeleton {
+  @apply bg-gray-200 relative overflow-hidden;
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    90deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.6) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  animation: shimmer 1.5s infinite;
+}
+.grecaptcha-badge { visibility: hidden; }
