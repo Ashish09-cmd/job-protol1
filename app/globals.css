@@ -147,6 +147,8 @@
 }
 
 
+@import "./styles/components/header.css";
+
 
 
 html,
@@ -165,7 +167,7 @@ body {
    Layout
 ================================ */
 .container {
-  max-width: 1240px;
+  max-width: 1252px;
   margin: 0 auto;
   padding-right: 24px;
   padding-left: 24px;

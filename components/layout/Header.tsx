@@ -4,6 +4,7 @@ import { Icon } from "@iconify/react";
 import Link from "next/link";
 // import { useGlobal } from "@/app/context/GlobalContext";
 import { siteConfig } from "@/config/site";
+import { usePathname } from "next/navigation";
 // import { siteConfig } from "";
 
 interface Course {
@@ -151,6 +152,8 @@ const STATIC_FOOTER_SECTIONS = [
   },
 ];
 
+const HIDDEN_PREFIXES = ["/login", "/register", "/employer-zone"];
+
 const Header = () => {
 //   const { contact_information } = useGlobal();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -166,6 +169,11 @@ const Header = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const isClickingSuggestion = useRef(false);
+
+  const pathname = usePathname();
+  const hideAuthActions = HIDDEN_PREFIXES.some(
+    (p) => pathname === p || pathname.startsWith(`${p}/`),
+  );
 
   // Static data — no fetch, no loading state needed.
   const CourseCategoryData: Category[] = STATIC_CATEGORIES;
@@ -269,7 +277,7 @@ const Header = () => {
           onMouseLeave={() => setIsCoursesDropdownOpen(false)}
         >
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-9">
               <div>
                 <Link href={"/"} className="logo cursor-pointer">
                   <img
@@ -281,13 +289,14 @@ const Header = () => {
               </div>
               <div className="flex-1">
                 <div className="flex justify-between items-center">
-                  <div className="flex items-center gap-4">
-                    <div className="relative dropdown-menu">
+                  <ul className="flex items-center gap-4">
+                    <li className="text-sm font-regular">Find Jobs</li>
+                    <li className="relative dropdown-menu">
                       <button
                         onMouseEnter={() => setIsCoursesDropdownOpen(true)}
-                        className="flex items-center font-bold gap-1 px-4 py-3 text-sm font-baloo2 text-text-subtext cursor-pointer hover:bg-[#F2F6FC] duration-100 rounded-lg"
+                        className="flex items-center font-regular gap-1 px-4 py-3 text-sm font-inter text-text-subtext cursor-pointer hover:bg-[#F2F6FC] duration-100 rounded-lg"
                       >
-                        All Courses
+                        Job Categories
                         <Icon
                           icon="meteor-icons:angle-down"
                           className="text-text-subtext"
@@ -397,10 +406,10 @@ const Header = () => {
                           )}
                         </div>
                       </div>
-                    </div>
-
+                    </li>
+                    <li>Training</li>
                     {/* Desktop Search */}
-                    <div ref={searchRef} className="relative">
+                    {/* <div ref={searchRef} className="relative">
                       <form
                         action="/courses/search"
                         method="GET"
@@ -460,318 +469,48 @@ const Header = () => {
                           ))}
                         </div>
                       )}
-                    </div>
-                  </div>
+                    </div> */}
+                  </ul>
                 </div>
               </div>
             </div>
 
+            {!hideAuthActions && (
             <div className="flex items-center gap-6">
-              <div className="text-end font-bold font-baloo2 text-xs line-height-xs text-text-body">
-                Inquiry Hotline:
-                  <a href="">
-                    
-                  </a>
-              </div>
-              <div>
+              <ul className="pe-8 border-e-[0.5px] border-toogle flex items-center gap-6">
+                <li>
+                  <Link
+                    href={"login"}
+                    className="py-2 px-4 text-primary-blue cursor-pointer rounded-md border border-primary-blue focus:outline-0 text-xs font-regular line-height-sm "
+                  >
+                    Sign in
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={"/register"}
+                    className="py-2 px-4 bg-primary-blue text-white cursor-pointer rounded-md focus:outline-0 text-xs font-regular line-height-sm "
+                  >
+                    Register
+                  </Link>
+                </li>
+              </ul>
+              <div className="">
                 <Link
-                  href={"/inquiry"}
-                  className="flex items-center gap-2 bg-darkblue-800 text-white font-regular py-3.5 px-6 rounded-lg"
+                  href={"/employer-zone"}
+                  className="flex items-center gap-1.6 text-sm line-height-sm text-subtext-primary-color"
                 >
-                  Send Inquiry
-                  <Icon icon="material-symbols:arrow-right-alt"></Icon>
+                  <span>For Company</span>
+                  <span className="text-md">
+                    <Icon icon={"uil:angle-right"}></Icon>
+                  </span>
                 </Link>
               </div>
             </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Mobile Header */}
-      <header
-        className={`lg:hidden bg-white border-b border-[#DADADC] py-4 px-4 ${isSticky ? "sticky-header" : ""}`}
-      >
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="relative">
-              <button
-                onClick={toggleLeftMenu}
-                className="flex cursor-pointer items-center gap-1 py-3"
-              >
-                <Icon
-                  icon="ic:baseline-menu"
-                  className="text-text-subtext text-[28px]"
-                />
-              </button>
-            </div>
-            <div>
-              <Link href={"/"}>
-                <img
-                  src={`/${siteConfig.header_logo}`}
-                  alt={`${siteConfig.header_logo_alt}`}
-                  className="h-8.5 w-auto"
-                  loading="eager"
-                />
-              </Link>
-            </div>
-          </div>
-          <div className="flex items-center gap-1">
-            <button
-              onClick={toggleMenu}
-              className="flex items-center font-bold gap-1 px-4 py-3 text-sm font-baloo2 text-text-subtext cursor-pointer hover:bg-[#F2F6FC] duration-100 rounded-lg"
-            >
-              All Courses
-              <Icon
-                icon="meteor-icons:angle-down"
-                className="text-text-subtext"
-              />
-            </button>
-            <button className="cursor-pointer" onClick={toggleSearch}>
-              <Icon
-                icon="ri:search-line"
-                className="text-lg text-text-subtext"
-              />
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {/* Left Menu Sidebar */}
-      <div
-        className={`fixed top-0 left-0 h-full bg-white z-99999 transition-transform duration-300 ${
-          isLeftMenuOpen ? "translate-x-0" : "-translate-x-full"
-        } w-4/5`}
-      >
-        <div className="p-4">
-          <button onClick={toggleLeftMenu} className="mb-4">
-            ✕
-          </button>
-          <div className="flex flex-col gap-8">
-            <div className="flex flex-col col-span-4 gap-2">
-              {STATIC_FOOTER_SECTIONS[0].sections.map((section, index) => (
-                <div key={index} className="flex flex-col gap-2">
-                  <h3 className="text-lg font-bold text-text-heading font-baloo2 line-height-lg">
-                    {section.title}
-                  </h3>
-                  <ul className="flex flex-col gap-2">
-                    {section.menus.map((menu, menuIndex) => (
-                      <li key={menuIndex}>
-                        <Link
-                          href={menu.url}
-                          target={menu.target}
-                          className="text-sm font-medium mb-1 font-geologica text-gray-900"
-                        >
-                          {menu.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-            <div className="flex flex-col col-span-3 gap-6">
-              {STATIC_FOOTER_SECTIONS[1].sections.map((section, index) => (
-                <div key={index} className="flex flex-col gap-2">
-                  <h3 className="text-lg text-text-heading font-bold font-baloo2 line-height-lg">
-                    {section.title}
-                  </h3>
-                  <ul className="flex flex-col gap-2">
-                    {section.menus.map((menu, menuIndex) => (
-                      <li key={menuIndex}>
-                        <Link
-                          href={menu.url}
-                          target={menu.target}
-                          className="text-sm font-medium mb-1 font-geologica text-gray-900"
-                        >
-                          {menu.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Offcanvas Courses */}
-      <div
-        className={`fixed top-0 right-0 h-full bg-white z-99999 transition-transform duration-300 ${
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
-        } w-4/5 md:w-2/5`}
-      >
-        <div className="px-4 py-5">
-          <div className="flex items-center justify-between mb-4">
-            {currentView !== "categories" && (
-              <button
-                onClick={handleGoBack}
-                className="flex mb-2 items-center gap-2 text-sm font-medium text-gray-700 hover:text-gray-900"
-              >
-                <Icon icon="meteor-icons:angle-left" className="text-lg" />
-                Go Back
-              </button>
-            )}
-            <button
-              onClick={toggleMenu}
-              className="text-end flex justify-end"
-              aria-label="Close popup"
-            >
-              <Icon icon="uil:multiply" className="text-xl text-gray-700" />
-            </button>
-          </div>
-
-          <div>
-            {currentView === "categories" && (
-              <>
-                <h5 className="text-md font-semibold text-gray-text-title mb-2 font-poppins">
-                  Explore Courses
-                </h5>
-                <ul className="flex flex-col gap-2">
-                  {CourseCategoryData.map((category, index) => {
-                    const courseCount = category.subcategories?.length || 0;
-                    const firstCourse = category.subcategories?.[0];
-
-                    return (
-                      <li key={index}>
-                        {courseCount > 1 ? (
-                          <button
-                            onClick={() => handleCategoryClick(index)}
-                            className="flex items-center justify-between w-full text-left px-2 py-2 rounded text-sm text-gray-text-body text-text-subtext font-medium hover:bg-gray-100"
-                          >
-                            <span>{category.name}</span>
-                            <Icon
-                              icon="meteor-icons:angle-right"
-                              className="text-gray-700 text-xs"
-                            />
-                          </button>
-                        ) : courseCount === 1 ? (
-                          <Link
-                            href={firstCourse?.permalink || "#"}
-                            onClick={() => setIsMenuOpen(false)}
-                            className="block w-full px-2 py-2 rounded text-sm text-gray-text-body text-text-subtext font-medium hover:bg-gray-100"
-                          >
-                            {category.name}
-                          </Link>
-                        ) : (
-                          <span className="block w-full px-2 py-2 text-sm text-gray-400">
-                            {category.name}
-                          </span>
-                        )}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </>
-            )}
-
-            {currentView === "subcategories" &&
-              selectedCategory !== null &&
-              CourseCategoryData[selectedCategory] && (
-                <>
-                  <h5 className="text-md font-semibold text-gray-text-title mb-2 font-poppins">
-                    {CourseCategoryData[selectedCategory].name}
-                  </h5>
-                  <ul className="flex flex-col gap-2">
-                    {CourseCategoryData[selectedCategory].subcategories.map(
-                      (subcategory, index) => (
-                        <li key={index}>
-                          <Link
-                            href={subcategory.permalink || "#"}
-                            onClick={() => toggleMenu()}
-                            className="block w-full px-2 py-2 rounded text-sm text-gray-text-body text-text-subtext font-medium hover:bg-gray-100"
-                          >
-                            {subcategory.name}
-                          </Link>
-                        </li>
-                      ),
-                    )}
-                  </ul>
-                </>
               )}
           </div>
         </div>
-      </div>
-
-      {/* Offcanvas Search */}
-      <div
-        className={`fixed top-0 right-0 h-full bg-white z-9999 transition-transform duration-300 ${
-          isSearchOpen ? "-translate-x-0" : "translate-x-full"
-        } w-4/5 md:w-2/5`}
-      >
-        <div className="p-4">
-          <button onClick={toggleSearch} className="mb-4">
-            ✕
-          </button>
-          <div ref={searchRef} className="relative">
-            <form action="/courses/search" method="GET">
-              <input
-                type="text"
-                name="q"
-                placeholder="Search courses..."
-                id="searchInputMobile"
-                className="w-full border p-3 border-[#DADADC] rounded mb-4 focus:outline-none text-sm placeholder-gray-400"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={() =>
-                  searchQuery.length >= 2 && setShowSuggestions(true)
-                }
-              />
-            </form>
-
-            {showSuggestions && suggestions.length > 0 && (
-              <div
-                className="pb-6 border-b border-gray-200"
-                onMouseDown={() => (isClickingSuggestion.current = true)}
-                onMouseUp={() => (isClickingSuggestion.current = false)}
-              >
-                {suggestions.map((course, index) => (
-                  <Link
-                    key={index}
-                    href={`${course.permalink}`}
-                    className="flex items-center gap-4 py-2 hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
-                    onClick={() => setShowSuggestions(false)}
-                  >
-                    <div className="w-15">
-                      <div className="h-10">
-                        <img
-                          src={course.images}
-                          alt={course.title}
-                          className="h-full w-full object-cover rounded"
-                        />
-                      </div>
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="text-sm font-medium mb-1 font-geologica text-gray-900">
-                        {course.title}
-                      </h4>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <h5 className="font-semibold mb-2 mt-3">Popular Searches</h5>
-          <ul className="flex flex-col gap-2 text-sm">
-            <li>Beginner Coding for Kids</li>
-            <li>Intermediate Coding for Kids</li>
-            <li>Advanced Coding for Kids</li>
-          </ul>
-        </div>
-      </div>
-
-      {/* Overlay */}
-      {(isMenuOpen || isLeftMenuOpen || isSearchOpen) && (
-        <div
-          className="fixed inset-0 bg-black/50 bg-opacity-80 z-40"
-          onClick={() => {
-            setIsMenuOpen(false);
-            setIsLeftMenuOpen(false);
-            setIsSearchOpen(false);
-          }}
-        ></div>
-      )}
+      </header>
     </>
   );
 };
