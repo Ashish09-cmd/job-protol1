@@ -12,7 +12,7 @@ import React from "react";
 const STATIC_GENERAL = {
   detail:
     "Broadway Kids helps children build real-world tech skills through coding, robotics, and math enrichment programs taught by experienced instructors.",
-  address: "Putalisadak, Kathmandu, Nepal",
+  address: "Shree Ganesh Marg, Subidhanagar, Tinkune, Kathmandu 44600, Nepal",
 };
 
 const STATIC_CONTACT = {
@@ -97,7 +97,7 @@ const Footer = () => {
                   <div className="flex flex-col gap-6">
                     <Link href="/">
                       <img
-                        src={`/${siteConfig.footer_logo}`}
+                        src={"/footerlogo.png"}
                         alt={`${siteConfig.footer_logo_alt}`}
                         className="h-13.5"
                         loading="eager"
@@ -272,126 +272,7 @@ const Footer = () => {
                       ))}
                     </div>
 
-                    <div className="flex flex-col col-span-5 gap-8">
-                      <div className="flex flex-col gap-6">
-                        <h5 className="text-lg font-semibold font-baloo2 text-white line-height-lg">
-                          We have been awarded with prestigious recognitions
-                        </h5>
-                        <div className="flex flex-wrap sm:flex-nowrap items-center gap-6">
-                          <div className="relative h-6 w-auto ">
-                            <img
-                              src="/assets/images/apac-insider.png"
-                              alt=""
-                              className="h-full object-cover"
-                            />
-                          </div>
-                          <div className="relative h-6 w-auto ">
-                            <img
-                              src="/assets/images/asocio.png"
-                              alt=""
-                              className="h-full object-cover"
-                            />
-                          </div>
-                          <div className="relative h-6 w-auto ">
-                            <img
-                              src="/assets/images/witsa.png"
-                              alt=""
-                              className="h-full object-cover"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex flex-col gap-2">
-                        <h5 className="text-lg font-semibold font-baloo2 text-white line-height-lg">
-                          Follow us on
-                        </h5>
-                        <ul className="flex items-center gap-2 ">
-                          {contact_information.content.facebook && (
-                            <li>
-                              <Link
-                                href={`${contact_information.content.facebook}`}
-                                className=" font-regular text-2xl h-8"
-                              >
-                                <img src="/assets/images/facebook.png" alt="" />
-                              </Link>
-                            </li>
-                          )}
-                          {contact_information.content.instagram && (
-                            <li>
-                              <Link
-                                href={`${contact_information.content.instagram}`}
-                                className=" font-regular text-2xl h-8"
-                              >
-                                <img
-                                  src="/assets/images/instagram.png"
-                                  alt=""
-                                />
-                              </Link>
-                            </li>
-                          )}
-                          {contact_information.content.youtube && (
-                            <li>
-                              <Link
-                                href={`${contact_information.content.youtube}`}
-                                className=" font-regular text-2xl h-8"
-                              >
-                                <img src="/assets/images/youtube.png" alt="" />
-                              </Link>
-                            </li>
-                          )}
-                          {contact_information.content.linkedin && (
-                            <li>
-                              <Link
-                                href={`${contact_information.content.linkedin}`}
-                                className=" font-regular text-2xl h-8"
-                              >
-                                <img src="/assets/images/linkedin.png" alt="" />
-                              </Link>
-                            </li>
-                          )}
-                          {contact_information.content.tiktok && (
-                            <li>
-                              <Link
-                                href={`${contact_information.content.tiktok}`}
-                                className=" font-regular text-2xl h-8"
-                              >
-                                <img src="/assets/images/tiktok.png" alt="" />
-                              </Link>
-                            </li>
-                          )}
-                          {contact_information.content.whatsapp_link && (
-                            <li>
-                              <Link
-                                href={`${contact_information.content.whatsapp_link}`}
-                                className=" font-regular text-2xl h-8"
-                              >
-                                <img src="/assets/images/whatsapp.png" alt="" />
-                              </Link>
-                            </li>
-                          )}
-                          {contact_information.content.viber_link && (
-                            <li>
-                              <Link
-                                href={`${contact_information.content.viber_link}`}
-                                className=" font-regular text-2xl h-8"
-                              >
-                                <img src="/assets/images/viber.png" alt="" />
-                              </Link>
-                            </li>
-                          )}
-                          {contact_information.content.x && (
-                            <li>
-                              <Link
-                                href={`${contact_information.content.x}`}
-                                className=" font-regular text-2xl h-8"
-                              >
-                                <img src="/assets/images/twitter.png" alt="" />
-                              </Link>
-                            </li>
-                          )}
-                        </ul>
-                      </div>
-                    </div>
+                 
                   </div>
                 </div>
               </div>

@@ -152,7 +152,11 @@ const STATIC_FOOTER_SECTIONS = [
   },
 ];
 
-const HIDDEN_PREFIXES = ["/login", "/register", "/employer-zone"];
+const HIDDEN_PREFIXES = [
+  "/jobseeker/login",
+  "/jobseeker/register",
+  "/employer-zone",
+];
 
 const Header = () => {
 //   const { contact_information } = useGlobal();
@@ -476,38 +480,38 @@ const Header = () => {
             </div>
 
             {!hideAuthActions && (
-            <div className="flex items-center gap-6">
-              <ul className="pe-8 border-e-[0.5px] border-toogle flex items-center gap-6">
-                <li>
+              <div className="flex items-center gap-6">
+                <ul className="pe-8 border-e-[0.5px] border-toogle flex items-center gap-6">
+                  <li>
+                    <Link
+                      href={"/jobseeker/login"}
+                      className="py-2 px-4 text-primary-blue cursor-pointer rounded-md border border-primary-blue focus:outline-0 text-xs font-regular line-height-sm "
+                    >
+                      Sign in
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href={"/jobseeker/register"}
+                      className="py-2 px-4 bg-primary-blue text-white cursor-pointer rounded-md focus:outline-0 text-xs font-regular line-height-sm "
+                    >
+                      Register
+                    </Link>
+                  </li>
+                </ul>
+                <div className="">
                   <Link
-                    href={"login"}
-                    className="py-2 px-4 text-primary-blue cursor-pointer rounded-md border border-primary-blue focus:outline-0 text-xs font-regular line-height-sm "
+                    href={"/employer-zone"}
+                    className="flex items-center gap-1.6 text-sm line-height-sm text-subtext-primary-color"
                   >
-                    Sign in
+                    <span>For Company</span>
+                    <span className="text-md">
+                      <Icon icon={"uil:angle-right"}></Icon>
+                    </span>
                   </Link>
-                </li>
-                <li>
-                  <Link
-                    href={"/register"}
-                    className="py-2 px-4 bg-primary-blue text-white cursor-pointer rounded-md focus:outline-0 text-xs font-regular line-height-sm "
-                  >
-                    Register
-                  </Link>
-                </li>
-              </ul>
-              <div className="">
-                <Link
-                  href={"/employer-zone"}
-                  className="flex items-center gap-1.6 text-sm line-height-sm text-subtext-primary-color"
-                >
-                  <span>For Company</span>
-                  <span className="text-md">
-                    <Icon icon={"uil:angle-right"}></Icon>
-                  </span>
-                </Link>
+                </div>
               </div>
-            </div>
-              )}
+            )}
           </div>
         </div>
       </header>
