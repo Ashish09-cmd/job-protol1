@@ -43,6 +43,7 @@ export default function JobSeekerLogin(){
                         Verified Companies   
                       </p>
                     </li>
+                    
                     <li className="flex flex-col items-center gap-0.5 ">
                       <h2 className="text-lg-xl font-black text-white line-height-xl font-inter">
                         200+
