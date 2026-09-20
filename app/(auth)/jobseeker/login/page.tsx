@@ -1,6 +1,8 @@
 import Button from "@/components/ui/button";
 import CountUp from "@/components/ui/Countup";
+import Input from "@/components/ui/Input";
 import Image from "next/image"
+import Link from "next/link";
 
 const STATS = [
   { end: 2400, label: "Active Job Listings" },
@@ -13,7 +15,7 @@ export default function JobSeekerLogin(){
       <>
         <section>
           <div className="container section-padding">
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-2 gap-8 shadow-lg rounded-3xl">
               <div className="py-10 px-8.5 bg-primary-blue rounded-tl-3xl rounded-bl-3xl flex flex-col gap-10">
                 <div className="flex items-center justify-center">
                   <Image
@@ -53,7 +55,7 @@ export default function JobSeekerLogin(){
                   </ul>
                 </div>
               </div>
-              <div className="py-8 px-8.5 bg-white border rounded-tr-3xl rounded-br-3xl flex flex-col gap-7">
+              <div className="py-8 px-8.5 bg-white rounded-tr-3xl rounded-br-3xl flex flex-col gap-7">
                 <div className="flex flex-col gap-7">
                   <div className="flex flex-col gap 1 5 items-center text-center">
                     <h2 className="text-xl font-bold font-manrope line-height-sm text-primary-blue">
@@ -64,14 +66,28 @@ export default function JobSeekerLogin(){
                     </p>
                   </div>
                   <div className="flex flex-col gap-8 pb-8 ">
-                    <div></div>
-                    <div className="">
-                      <Button
-                        type="submit"
-                        fullWidth
-                      >
-                        Log in
-                      </Button>
+                    <div>
+                      <form className="flex flex-col gap-10">
+                        <div className="flex flex-col gap-4">
+                          <Input
+                            label="Email Address"
+                            type="email"
+                            placeholder="Enter your Email Address"
+                          />
+                          <Input
+                            label="Password"
+                            type="password"
+                            placeholder="Enter your Password"
+                          />
+                          <div>
+                            <Link href={""} className="text-red-600 underline">Forget password </Link>
+                          </div>
+                        </div>
+
+                        <Button type="submit" fullWidth>
+                          Log in
+                        </Button>
+                      </form>
                     </div>
                   </div>
                 </div>
