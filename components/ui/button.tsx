@@ -7,10 +7,12 @@ const base =
 const variants = {
   primary: "bg-primary-blue text-white hover:opacity-90",
   secondary: "bg-[#F2F6FC] text-primary-blue hover:bg-[#E4ECF9]",
-  outline: "border border-primary-blue text-primary-blue bg-transparent hover:bg-[#F2F6FC]",
+  outline:
+    "border border-primary-blue text-primary-blue bg-transparent hover:bg-[#F2F6FC]",
   ghost: "bg-transparent text-primary-blue hover:bg-[#F2F6FC]",
   white: "bg-white text-primary-blue hover:bg-white/90", // for use on the blue panel
   danger: "bg-red-600 text-white hover:bg-red-700",
+  neutral: "border border-[#DADADC] bg-white text-black/60 hover:bg-[#F2F6FC]",
   link: "bg-transparent text-primary-blue underline underline-offset-4 hover:opacity-80 !px-0 !py-0",
 } satisfies Record<string, string>;
 

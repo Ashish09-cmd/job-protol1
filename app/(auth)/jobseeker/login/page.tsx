@@ -1,6 +1,8 @@
+import LoginForm from "@/components/auth/LoginForm";
 import Button from "@/components/ui/button";
 import CountUp from "@/components/ui/Countup";
 import Input from "@/components/ui/Input";
+import { Icon } from "@iconify/react";
 import Image from "next/image"
 import Link from "next/link";
 
@@ -57,7 +59,7 @@ export default function JobSeekerLogin(){
               </div>
               <div className="py-8 px-8.5 bg-white rounded-tr-3xl rounded-br-3xl flex flex-col gap-7">
                 <div className="flex flex-col gap-7">
-                  <div className="flex flex-col gap 1 5 items-center text-center">
+                  <div className="flex flex-col gap-1.5 items-center text-center">
                     <h2 className="text-xl font-bold font-manrope line-height-sm text-primary-blue">
                       Welcome Back
                     </h2>
@@ -65,29 +67,21 @@ export default function JobSeekerLogin(){
                       Log in to continue your job search on Broadway Jobs.
                     </p>
                   </div>
-                  <div className="flex flex-col gap-8 pb-8 ">
-                    <div>
-                      <form className="flex flex-col gap-10">
-                        <div className="flex flex-col gap-4">
-                          <Input
-                            label="Email Address"
-                            type="email"
-                            placeholder="Enter your Email Address"
-                          />
-                          <Input
-                            label="Password"
-                            type="password"
-                            placeholder="Enter your Password"
-                          />
-                          <div>
-                            <Link href={""} className="text-red-600 underline">Forget password </Link>
-                          </div>
-                        </div>
-
-                        <Button type="submit" fullWidth>
-                          Log in
-                        </Button>
-                      </form>
+                  <div className="flex flex-col gap-7">
+                    <LoginForm />
+                    <div className="flex items-center justify-around gap-2">
+                      <div className="h-[1px] w-full bg-[#dee2e6]"></div>
+                      <p>OR</p>
+                      <div className="h-[1px] w-full bg-[#dee2e6]"></div>
+                    </div>
+                    <div className="flex flex-col gap-4">
+                      <Button variant="neutral">
+                        <Icon icon={"material-icon-theme:google"}></Icon>Google
+                      </Button>
+                      <div className="flex items-center gap-1 justify-center">
+                        <p className="text-xs font-medium font-inter text-subtext-gray1 line-height-sm ">New to Broadway Jobs?</p>
+                        <Link href={""} className="underline text-primary-blue text-xs font-inter line-height-sm font-manrope">Register</Link>
+                      </div>
                     </div>
                   </div>
                 </div>
