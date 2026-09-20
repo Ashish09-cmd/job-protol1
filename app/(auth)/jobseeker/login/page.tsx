@@ -1,3 +1,4 @@
+import Button from "@/components/ui/button";
 import CountUp from "@/components/ui/Countup";
 import Image from "next/image"
 
@@ -36,38 +37,45 @@ export default function JobSeekerLogin(){
                   </div>
                   <ul className="flex items-center gap-7">
                     {STATS.map((stats) => (
-                      <li className="flex flex-col items-center gap-0.5 " key={stats.label}>
+                      <li
+                        className="flex flex-col items-center gap-0.5 "
+                        key={stats.label}
+                      >
                         <h2 className="text-lg-xl font-black text-white line-height-xl font-inter">
                           {/* {stats.end} */}
-                          <CountUp end={stats.end} suffix="+"/>
+                          <CountUp end={stats.end} suffix="+" />
                         </h2>
                         <p className="text-sm font-regular line-height-sm text-white font-inter">
                           {stats.label}
                         </p>
                       </li>
                     ))}
-
-                    {/* <li className="flex flex-col items-center gap-0.5 ">
-                      <h2 className="text-lg-xl font-black text-white line-height-xl font-inter">
-                        800+
-                      </h2>
-                      <p className="text-sm font-regular line-height-sm text-white font-inter">
-                        Verified Companies   
-                      </p>
-                    </li>
-
-                    <li className="flex flex-col items-center gap-0.5 ">
-                      <h2 className="text-lg-xl font-black text-white line-height-xl font-inter">
-                        200+
-                      </h2>
-                      <p className="text-sm font-regular line-height-sm text-white font-inter">
-                        Candidates Hired
-                      </p>
-                    </li> */}
                   </ul>
                 </div>
               </div>
-              <div></div>
+              <div className="py-8 px-8.5 bg-white border rounded-tr-3xl rounded-br-3xl flex flex-col gap-7">
+                <div className="flex flex-col gap-7">
+                  <div className="flex flex-col gap 1 5 items-center text-center">
+                    <h2 className="text-xl font-bold font-manrope line-height-sm text-primary-blue">
+                      Welcome Back
+                    </h2>
+                    <p className="text-xs font-regular line-height-sm text-subtext-gray3">
+                      Log in to continue your job search on Broadway Jobs.
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-8 pb-8 ">
+                    <div></div>
+                    <div className="">
+                      <Button
+                        type="submit"
+                        fullWidth
+                      >
+                        Log in
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
