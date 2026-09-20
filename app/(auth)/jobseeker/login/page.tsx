@@ -1,4 +1,12 @@
+import CountUp from "@/components/ui/Countup";
 import Image from "next/image"
+
+const STATS = [
+  { end: 2400, label: "Active Job Listings" },
+  { end: 800, label: "Verified Companies" },
+  { end: 200, label: "Candidates Hired" },
+];
+
 export default function JobSeekerLogin(){
     return (
       <>
@@ -27,15 +35,19 @@ export default function JobSeekerLogin(){
                     </p>
                   </div>
                   <ul className="flex items-center gap-7">
-                    <li className="flex flex-col items-center gap-0.5 ">
-                      <h2 className="text-lg-xl font-black text-white line-height-xl font-inter">
-                        2,400+
-                      </h2>
-                      <p className="text-sm font-regular line-height-sm text-white font-inter">
-                        Active Job Listings
-                      </p>
-                    </li>
-                    <li className="flex flex-col items-center gap-0.5 ">
+                    {STATS.map((stats) => (
+                      <li className="flex flex-col items-center gap-0.5 " key={stats.label}>
+                        <h2 className="text-lg-xl font-black text-white line-height-xl font-inter">
+                          {/* {stats.end} */}
+                          <CountUp end={stats.end} suffix="+"/>
+                        </h2>
+                        <p className="text-sm font-regular line-height-sm text-white font-inter">
+                          {stats.label}
+                        </p>
+                      </li>
+                    ))}
+
+                    {/* <li className="flex flex-col items-center gap-0.5 ">
                       <h2 className="text-lg-xl font-black text-white line-height-xl font-inter">
                         800+
                       </h2>
@@ -51,7 +63,7 @@ export default function JobSeekerLogin(){
                       <p className="text-sm font-regular line-height-sm text-white font-inter">
                         Candidates Hired
                       </p>
-                    </li>
+                    </li> */}
                   </ul>
                 </div>
               </div>
