@@ -50,7 +50,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           type={inputType}
           aria-invalid={!!error}
           aria-describedby={message ? messageId : undefined}
-          className={`w-full rounded-lg border bg-white px-3 py-2.5 text-sm font-inter text-black placeholder:text-black/30 focus:outline-0  disabled:opacity-60 disabled:cursor-not-allowed ${
+          className={`w-full rounded-lg border bg-white px-3 py-2 text-xs font-inter text-black placeholder:text-black/30 focus:outline-0  disabled:opacity-60 disabled:cursor-not-allowed ${
             error ? "border-red-600" : "border-[#DADADC]"
           } ${isPassword ? "pr-11" : ""} ${className}`}
           {...props}

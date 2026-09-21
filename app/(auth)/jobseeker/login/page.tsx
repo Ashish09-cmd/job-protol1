@@ -1,7 +1,6 @@
 import LoginForm from "@/components/auth/LoginForm";
-import Button from "@/components/ui/button";
+import Button from "@/components/ui/button/Button";
 import CountUp from "@/components/ui/Countup";
-import Input from "@/components/ui/Input";
 import { Icon } from "@iconify/react";
 import Image from "next/image"
 import Link from "next/link";
@@ -29,10 +28,10 @@ export default function JobSeekerLogin(){
                   />
                 </div>
                 <div className="flex items-center flex-col gap-10">
-                  <div className="flex flex-col gap-1.5 pb-10 text-center border-b border-b-white ">
-                    <h1 className="text-xl font-bold line-height-sm font-manrope text-white">
+                  <div className="flex flex-col gap-1.5 pb-10 text-center border-b border-b-white/20 ">
+                    <h2 className="text-xl font-bold line-height-sm font-manrope text-white">
                       Where Talent Meets Opportunity
-                    </h1>
+                    </h2>
                     <p className="text-xs font-regular font-inter line-height-sm text-white ">
                       Connecting skilled people with companies worth joining.
                       Verified employers, easy in-platform applications, and a
@@ -40,17 +39,17 @@ export default function JobSeekerLogin(){
                     </p>
                   </div>
                   <ul className="flex items-center gap-7">
-                    {STATS.map((stats) => (
+                    {STATS.map((stat) => (
                       <li
                         className="flex flex-col items-center gap-0.5 "
-                        key={stats.label}
+                        key={stat.label}
                       >
                         <h2 className="text-lg-xl font-black text-white line-height-xl font-inter">
                           {/* {stats.end} */}
-                          <CountUp end={stats.end} suffix="+" />
+                          <CountUp end={stat.end} suffix="+" />
                         </h2>
                         <p className="text-sm font-regular line-height-sm text-white font-inter">
-                          {stats.label}
+                          {stat.label}
                         </p>
                       </li>
                     ))}
@@ -60,9 +59,9 @@ export default function JobSeekerLogin(){
               <div className="py-8 px-8.5 bg-white rounded-tr-3xl rounded-br-3xl flex flex-col gap-7">
                 <div className="flex flex-col gap-7">
                   <div className="flex flex-col gap-1.5 items-center text-center">
-                    <h2 className="text-xl font-bold font-manrope line-height-sm text-primary-blue">
+                    <h1 className="text-xl font-bold font-manrope line-height-sm text-primary-blue">
                       Welcome Back
-                    </h2>
+                    </h1>
                     <p className="text-xs font-regular line-height-sm text-subtext-gray3">
                       Log in to continue your job search on Broadway Jobs.
                     </p>
@@ -70,17 +69,27 @@ export default function JobSeekerLogin(){
                   <div className="flex flex-col gap-7">
                     <LoginForm />
                     <div className="flex items-center justify-around gap-2">
-                      <div className="h-[1px] w-full bg-[#dee2e6]"></div>
-                      <p>OR</p>
-                      <div className="h-[1px] w-full bg-[#dee2e6]"></div>
+                      <div className="h-px w-full bg-[#dee2e6]"></div>
+                      <p className="text-xs font-medium line-height-sm text-subtext-primary-color ">
+                        OR
+                      </p>
+                      <div className="h-px w-full bg-[#dee2e6]"></div>
                     </div>
                     <div className="flex flex-col gap-4">
                       <Button variant="neutral">
-                        <Icon icon={"material-icon-theme:google"}></Icon>Google
+                        <Icon icon={"material-icon-theme:google"} />
+                        Google
                       </Button>
                       <div className="flex items-center gap-1 justify-center">
-                        <p className="text-xs font-medium font-inter text-subtext-gray1 line-height-sm ">New to Broadway Jobs?</p>
-                        <Link href={""} className="underline text-primary-blue text-xs font-inter line-height-sm font-manrope">Register</Link>
+                        <p className="text-xs font-medium font-inter text-subtext-gray1 line-height-sm ">
+                          New to Broadway Jobs?
+                        </p>
+                        <Link
+                          href={"/jobseeker/register"}
+                          className="underline text-primary-blue text-xs line-height-sm font-manrope"
+                        >
+                          Register
+                        </Link>
                       </div>
                     </div>
                   </div>
