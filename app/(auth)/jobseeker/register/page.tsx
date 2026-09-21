@@ -1,10 +1,8 @@
-import LoginForm from "@/components/auth/LoginForm";
 import RegisterForm from "@/components/auth/RegisterForm";
 import Button from "@/components/ui/button/Button";
 import CountUp from "@/components/ui/Countup";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
-import Link from "next/link";
 
 
 const STATS = [
@@ -72,9 +70,9 @@ export default function JobSeekerRegister() {
                 <div className="flex flex-col gap-7">
                   <RegisterForm />
                   <div className="flex items-center justify-around gap-2">
-                    <div className="h-[1px] w-full bg-[#dee2e6]"></div>
-                    <p>OR</p>
-                    <div className="h-[1px] w-full bg-[#dee2e6]"></div>
+                    <div className="h-px w-full bg-[#dee2e6]"></div>
+                    <p className="text-xs font-medium line-height-sm text-subtext-primary-color " >OR</p>
+                    <div className="h-px w-full bg-[#dee2e6]"></div>
                   </div>
                   <div className="flex flex-col gap-4">
                     <Button variant="neutral">
