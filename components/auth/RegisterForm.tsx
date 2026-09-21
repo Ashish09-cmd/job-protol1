@@ -2,10 +2,10 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import Button from "@/components/ui/button";
 import { registerSchema, type RegisterValues } from "@/lib/validation/auth";
 import Input from "../ui/Input";
 import Checkbox from "../ui/Checkbox";
+import Button from "../ui/button/Button";
 
 export default function RegisterForm() {
   const {

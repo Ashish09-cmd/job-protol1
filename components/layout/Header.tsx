@@ -3,7 +3,7 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 // import { useGlobal } from "@/app/context/GlobalContext";
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/lib/config/site";
 import { usePathname } from "next/navigation";
 // import { siteConfig } from "";
 

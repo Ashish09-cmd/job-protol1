@@ -1,6 +1,6 @@
 import LoginForm from "@/components/auth/LoginForm";
 import RegisterForm from "@/components/auth/RegisterForm";
-import Button from "@/components/ui/button";
+import Button from "@/components/ui/button/Button";
 import CountUp from "@/components/ui/Countup";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
