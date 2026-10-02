@@ -90,7 +90,7 @@ const Footer = () => {
     <>
       <footer className="footer-section">
         <div className="bg-[#212529] ">
-          <div className="container section-padding ">
+          <div className="max-w-7xl py-8 lg:py-12 mx-auto">
             <nav>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
                 <div className="md:col-span-4 ">
@@ -279,7 +279,7 @@ const Footer = () => {
             </nav>
           </div>
           <div className="sub-footer bg-[#191C1F80]">
-            <div className="container py-8">
+            <div className="max-w-7xl mx-auto py-8">
               <p className="text-xs font-medium line-height-xs text-white text-center">
                 A product of Broadway Infosys. © 2026 Broadway Kids. All rights
                 reserved.
