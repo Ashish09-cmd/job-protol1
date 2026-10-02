@@ -15,16 +15,26 @@ export default function JobSeekerRegister() {
   return (
     <>
       <section>
-        <div className="container section-padding">
+        <div className="max-w-7xl py-8 lg:py-12 mx-auto">
           <div className="grid grid-cols-2 gap-8 shadow-lg rounded-3xl">
             <div className="py-10 px-8.5 bg-primary-blue rounded-tl-3xl rounded-bl-3xl flex flex-col items-center justify-center gap-10">
-              <div className="flex items-center justify-center">
+              {/* <div className="flex items-center justify-center">
                 <Image
                   src={"/assets/jobseekerlogin.png"}
                   alt="Job seeker login"
                   height={250}
                   width={300}
                   loading="eager"
+                />
+              </div> */}
+              <div className="flex items-center justify-center">
+                <Image
+                  src="/assets/jobseekerlogin.png"
+                  alt="Job seeker login"
+                  width={300}
+                  height={250}
+                  loading="eager"
+                  className="w-full max-w-[300px] h-auto"
                 />
               </div>
               <div className="flex items-center flex-col gap-10">
@@ -71,7 +81,9 @@ export default function JobSeekerRegister() {
                   <RegisterForm />
                   <div className="flex items-center justify-around gap-2">
                     <div className="h-px w-full bg-[#dee2e6]"></div>
-                    <p className="text-xs font-medium line-height-sm text-subtext-primary-color " >OR</p>
+                    <p className="text-xs font-medium line-height-sm text-subtext-primary-color ">
+                      OR
+                    </p>
                     <div className="h-px w-full bg-[#dee2e6]"></div>
                   </div>
                   <div className="flex flex-col gap-4">

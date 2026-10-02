@@ -2,10 +2,8 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
-// import { useGlobal } from "@/app/context/GlobalContext";
 import { siteConfig } from "@/lib/config/site";
 import { usePathname } from "next/navigation";
-// import { siteConfig } from "";
 
 interface Course {
   id: string;
@@ -39,13 +37,6 @@ interface SearchSuggestion {
   images: string;
 }
 
-/**
- * STATIC SAMPLE DATA
- * Replace/extend this with whatever categories, subcategories, and
- * courses you want to ship in a static build. Each subcategory acts
- * as a "course" entry here, mirroring the shape the original API
- * response produced after mapping.
- */
 const STATIC_CATEGORIES: Category[] = [
   {
     id: 0,
@@ -115,7 +106,6 @@ const STATIC_CATEGORIES: Category[] = [
   },
 ];
 
-/** Flattened list used to power the static search-suggestion dropdown. */
 const STATIC_SEARCH_INDEX: SearchSuggestion[] = STATIC_CATEGORIES.flatMap(
   (cat) =>
     cat.subcategories.map((sub) => ({
@@ -125,33 +115,6 @@ const STATIC_SEARCH_INDEX: SearchSuggestion[] = STATIC_CATEGORIES.flatMap(
       images: "/default.jpg",
     })),
 );
-
-const STATIC_FOOTER_SECTIONS = [
-  {
-    sections: [
-      {
-        title: "Company",
-        menus: [
-          { title: "About Us", url: "/about", target: "_self" },
-          { title: "Careers", url: "/careers", target: "_self" },
-          { title: "Contact", url: "/contact", target: "_self" },
-        ],
-      },
-    ],
-  },
-  {
-    sections: [
-      {
-        title: "Resources",
-        menus: [
-          { title: "Blog", url: "/blog", target: "_self" },
-          { title: "FAQ", url: "/faq", target: "_self" },
-        ],
-      },
-    ],
-  },
-];
-
 const HIDDEN_PREFIXES = [
   "/jobseeker/login",
   "/jobseeker/register",
@@ -159,7 +122,6 @@ const HIDDEN_PREFIXES = [
 ];
 
 const Header = () => {
-//   const { contact_information } = useGlobal();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLeftMenuOpen, setIsLeftMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -167,8 +129,6 @@ const Header = () => {
   const [isCoursesDropdownOpen, setIsCoursesDropdownOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState(0);
   const [activeSubCategory, setActiveSubCategory] = useState(0);
-  const [currentView, setCurrentView] = useState("categories");
-  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
@@ -179,10 +139,8 @@ const Header = () => {
     (p) => pathname === p || pathname.startsWith(`${p}/`),
   );
 
-  // Static data — no fetch, no loading state needed.
   const CourseCategoryData: Category[] = STATIC_CATEGORIES;
 
-  // Client-side filter over the static search index (replaces the debounced API call).
   const suggestions: SearchSuggestion[] = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
     if (query.length < 1) return [];
@@ -231,31 +189,6 @@ const Header = () => {
     };
   }, []);
 
-  const toggleMenu = () => {
-    if (!isMenuOpen) {
-      setCurrentView("categories");
-      setSelectedCategory(null);
-    }
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const toggleLeftMenu = () => setIsLeftMenuOpen(!isLeftMenuOpen);
-  const toggleSearch = () => setIsSearchOpen(!isSearchOpen);
-
-  const handleCategoryClick = (index: number) => {
-    setSelectedCategory(index);
-    setCurrentView("subcategories");
-  };
-
-  const handleGoBack = () => {
-    if (currentView === "courses") {
-      setCurrentView("subcategories");
-    } else if (currentView === "subcategories") {
-      setCurrentView("categories");
-      setSelectedCategory(null);
-    }
-  };
-
   useEffect(() => {
     const lockScroll = isMenuOpen || isLeftMenuOpen || isSearchOpen;
     if (lockScroll) {
@@ -277,7 +210,7 @@ const Header = () => {
         className={`hidden lg:block ${isSticky ? "sticky-header" : ""} border-b border-[#0000001A]`}
       >
         <div
-          className={`container ${isSticky ? "py-5" : "py-5"}`}
+          className={`max-w-7xl mx-auto ${isSticky ? "py-5" : "py-5"}`}
           onMouseLeave={() => setIsCoursesDropdownOpen(false)}
         >
           <div className="flex items-center justify-between">
@@ -411,69 +344,17 @@ const Header = () => {
                         </div>
                       </div>
                     </li>
-                    <li>Training</li>
-                    {/* Desktop Search */}
-                    {/* <div ref={searchRef} className="relative">
-                      <form
-                        action="/courses/search"
-                        method="GET"
-                        className="flex items-center relative rounded-[38px] border-1 border-[#DADADC] px-4 py-3 justify-between"
+                    <li>
+                      <button
+                        className="flex items-center font-regular gap-1 px-4 py-3 text-sm font-inter text-text-subtext cursor-pointer hover:bg-[#F2F6FC] duration-100 rounded-lg"
                       >
-                        <input
-                          type="text"
-                          name="q"
-                          placeholder="What do you want to learn today?"
-                          id="searchInput"
-                          className="text-sm border-none focus:outline-0 w-full placeholder:text-black/25"
-                          value={searchQuery}
-                          onChange={(e) => setSearchQuery(e.target.value)}
-                          onFocus={() =>
-                            searchQuery.length >= 2 && setShowSuggestions(true)
-                          }
-                        />
-                        <div className="searchIcon" id="search-icon"></div>
+                        Blog
                         <Icon
-                          icon="ri:search-line"
-                          className="absolute right-4 text-gray-400 text-lg cursor-pointer"
+                          icon="meteor-icons:angle-down"
+                          className="text-text-subtext"
                         />
-                      </form>
-
-                      {showSuggestions && suggestions.length > 0 && (
-                        <div
-                          className="absolute top-full -left-20 right-0 bg-white border border-gray-200 mt-5 shadow-2xl z-50 w-140 max-h-90 overflow-y-auto"
-                          onMouseDown={() =>
-                            (isClickingSuggestion.current = true)
-                          }
-                          onMouseUp={() =>
-                            (isClickingSuggestion.current = false)
-                          }
-                        >
-                          {suggestions.map((course, index) => (
-                            <Link
-                              key={index}
-                              href={`${course.permalink}`}
-                              className="flex items-center gap-4 p-4 hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
-                              onClick={() => setShowSuggestions(false)}
-                            >
-                              <div className="w-25">
-                                <div className="h-15">
-                                  <img
-                                    src={course.images}
-                                    alt={course.title}
-                                    className="h-full w-full object-cover rounded"
-                                  />
-                                </div>
-                              </div>
-                              <div className="flex-1">
-                                <h4 className="text-sm font-medium mb-1 font-geologica text-gray-900">
-                                  {course.title}
-                                </h4>
-                              </div>
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div> */}
+                      </button>
+                    </li>
                   </ul>
                 </div>
               </div>

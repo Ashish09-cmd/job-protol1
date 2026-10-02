@@ -15,7 +15,7 @@ export default function JobSeekerLogin(){
     return (
       <>
         <section>
-          <div className="container section-padding">
+          <div className="max-w-7xl mx-auto py-8 lg:py-12 ">
             <div className="grid grid-cols-2 gap-8 shadow-lg rounded-3xl">
               <div className="py-10 px-8.5 bg-primary-blue rounded-tl-3xl rounded-bl-3xl flex flex-col gap-10">
                 <div className="flex items-center justify-center">

@@ -7,8 +7,9 @@
 
   /* font family */
   --font-inter: "Inter", sans-serif;
-  --font-manrope: "Manrope", sans-serif; /*  title */ 
-
+  --font-manrope: "Manrope", sans-serif; /*  title */
+  --color-text-heading:#212529; 
+ 
   /* primary color blue  */
    --color-primary-blue:#2563EB;
    --color-blue-50:#EEF0FE;
@@ -87,7 +88,8 @@
 
   /* font size */
   --text-xxs:4px;
-  --text-xs:8px;
+  /* --text-xs:8px; */
+  --text-vvxs:10px;
   --text-vxs:12px;
   --text-xs:14px;
   --text-sm:16px;
@@ -146,10 +148,7 @@
 
 }
 
-
 @import "./styles/components/header.css";
-
-
 
 html,
 body {
@@ -160,8 +159,6 @@ body {
 body {
     font-family: var(--font-inter);
 }
-
-
 
 /* ================================
    Layout
