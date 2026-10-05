@@ -5,10 +5,10 @@ import JobCard from '@/components/ui/JobCard'
 const HomePage = () => {
   return (
      <>
-     <HeroSection/>
+      <HeroSection/>
       <VacencySection/>
      </>
   )
-}
+}  
 
-export default HomePage
+export default HomePage 
