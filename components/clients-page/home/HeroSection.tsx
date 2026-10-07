@@ -1,5 +1,6 @@
 import TypingText from "@/components/ui/Typingtext";
 import Link from "next/link";
+import JobSearchBar from "./partials/JobSearchBar";
 
 const HERO_WORDS = [
   "Dream Career",
@@ -27,11 +28,7 @@ export default function HeroSection() {
                 job search experience.
               </p>
             </div>
-            <div>
-              <form action="">
-                <input type="Job titles, keywords or companies" />
-              </form>
-            </div>
+            <JobSearchBar className="max-w-2xl" />
           </div>
           <div className="flex items-center gap-1 text-vxs font-medium font-manrope text-black">
             Popular Searches:
