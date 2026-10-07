@@ -1,0 +1,109 @@
+/*
+ * Infinite logo slider.
+ *
+ * Custom properties (set from LogoMarquee.tsx):
+ *   --visible-lg : logos visible at once on large screens (9 or 8)
+ *   --count      : logos in ONE set (the set is rendered twice for a seamless loop)
+ *   --duration   : time for one full loop
+ */
+
+.marquee {
+  --visible: 3;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .marquee {
+    --visible: 5;
+  }
+}
+
+@media (min-width: 1024px) {
+  .marquee {
+    --visible: var(--visible-lg);
+  }
+}
+
+/* Fades the outermost logo on each side (1 slot per side) */
+.mask {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.2) 0,
+    #000 calc(100% / var(--visible)),
+    #000 calc(100% - 100% / var(--visible)),
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.2) 0,
+    #000 calc(100% / var(--visible)),
+    #000 calc(100% - 100% / var(--visible)),
+    rgba(0, 0, 0, 0.2) 100%
+  );
+}
+
+.track {
+  display: flex;
+  width: 100%;
+  animation: scroll var(--duration) linear infinite;
+  will-change: transform;
+}
+
+/* Moves left -> right instead of right -> left */
+.reverse {
+  animation-direction: reverse;
+}
+
+/* Pause while the pointer is over the row */
+.marquee:hover .track {
+  animation-play-state: paused;
+}
+
+/* Each logo takes exactly 1 / --visible of the row width */
+.item {
+  flex: 0 0 calc(100% / var(--visible));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+/* Soft blur on the two end slots */
+.blur {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: calc(100% / var(--visible));
+  pointer-events: none;
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+
+.blurLeft {
+  left: 0;
+  -webkit-mask-image: linear-gradient(to right, #000, transparent);
+  mask-image: linear-gradient(to right, #000, transparent);
+}
+
+.blurRight {
+  right: 0;
+  -webkit-mask-image: linear-gradient(to left, #000, transparent);
+  mask-image: linear-gradient(to left, #000, transparent);
+}
+
+/* One full set of logos = count / visible of the track width */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% * var(--count) / var(--visible)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+}
