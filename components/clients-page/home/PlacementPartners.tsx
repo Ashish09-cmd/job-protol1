@@ -9,10 +9,10 @@ export default function PlacementPartners() {
     <section className="bg-white">
       <div className="max-w-7xl mx-auto py-8 flex flex-col gap-8.5 text-center">
         <div className="flex flex-col max-w-4xl mx-auto gap-4">
-          <h2 className="font-bold text-lg-xl line-height-2xl font-manrope">
+          <h3 className="font-bold text-md line-height-2xl font-manrope">
             TRUSTED BY{" "}
             <span className="text-primary-blue">INDUSTRY LEADERS</span>
-          </h2>
+          </h3>
           <p className="text-sm font-regular font-inter text-text-secondary-color line-height-sm">
             Businesses across Nepal and International brands trust Theme Nepal
             for professional web development, SEO, digital marketing, branding,
