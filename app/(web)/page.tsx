@@ -1,3 +1,4 @@
+import GetStart from "@/components/clients-page/home/GetStart";
 import HeroSection from "@/components/clients-page/home/HeroSection";
 import Howworks from "@/components/clients-page/home/HowWorks";
 import PlacementPratners from "@/components/clients-page/home/PlacementPartners";
@@ -10,6 +11,7 @@ export default function HomePage() {
       <VacencySection />
       <PlacementPratners/>
       <Howworks/>
+      <GetStart/>
     </>
   );
 }
