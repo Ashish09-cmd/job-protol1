@@ -38,9 +38,9 @@ export default function JobCard({ job }: JobCardProps) {
         </div>
 
         <div className="flex min-w-0 flex-col gap-2">
-          <h3 className="text-vxs font-bold font-manrope line-height-2xl text-text-heading">
+          <Link href={""} className="text-vxs font-bold font-manrope line-height-2xl text-text-heading">
             {title}
-          </h3>
+          </Link >
           <Link
             href={`/companies/${company.slug}`}
             className="truncate uppercase text-primary-blue font-semibold line-height-3xl text-vvxs"
