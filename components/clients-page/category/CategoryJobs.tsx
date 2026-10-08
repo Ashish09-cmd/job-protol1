@@ -85,10 +85,10 @@ export default function CategoryJobs({
               onClick={() => setIsFilterOpen((open) => !open)}
               aria-expanded={isFilterOpen}
               aria-controls="category-filters"
-              className="flex cursor-pointer items-center gap-2 rounded-md border border-text-heading px-4 py-2 text-sm font-regular font-inter text-text-heading transition-colors hover:bg-primary-blue/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue"
+              className="flex cursor-pointer items-center gap-2 rounded-md border border-subtext-primary-color/20 px-4 py-2 text-sm font-regular font-inter text-text-heading transition-colors hover:bg-primary-blue/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue"
             >
               <Icon icon="ic:round-filter-list" className="text-lg" />
-              Filter
+              Filter 
               {!isFilterOpen && activeFilterCount > 0 && (
                 <span className="flex size-5 items-center justify-center rounded-full bg-primary-blue text-vvxs font-semibold text-white">
                   {activeFilterCount}
@@ -116,7 +116,7 @@ export default function CategoryJobs({
           288px (open) and 0px (closed), so the list smoothly takes the space.
         */}
         <div
-          className={`grid grid-cols-1   transition-[grid-template-columns,column-gap] duration-300 ease-out motion-reduce:transition-none ${
+          className={`grid grid-cols-1 items-start  transition-[grid-template-columns,column-gap] duration-300 ease-out motion-reduce:transition-none ${
             isFilterOpen
               ? "lg:grid-cols-[288px_minmax(0,1fr)] lg:gap-x-8"
               : "lg:grid-cols-[0px_minmax(0,1fr)] lg:gap-x-0"

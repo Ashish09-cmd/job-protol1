@@ -29,10 +29,10 @@ export default function FilterGroup({
     isCollapsible && !showAll ? options.slice(0, initialVisible) : options;
 
   return (
-    <fieldset className="min-w-0 py-6 first:pt-0 last:pb-0">
-      <legend className="mb-4 p-0 text-sm font-semibold font-manrope text-text-heading">
+    <fieldset className="min-w-0 pb-4 pt-2.5  flex flex-col gap-3.5 first:pt-0 last:pb-0">
+      <h5 className=" text-xs font-semibold line-height-2xl font-manrope text-text-heading">
         {title}
-      </legend>
+      </h5>
 
       <div
         className={`grid gap-x-4 gap-y-3.5 ${
@@ -60,7 +60,7 @@ export default function FilterGroup({
           type="button"
           onClick={() => setShowAll((value) => !value)}
           aria-expanded={showAll}
-          className="mt-4 cursor-pointer text-vxs font-medium font-inter text-primary-blue hover:underline"
+          className="mt-4 cursor-pointer text-start text-vxs font-medium font-inter text-primary-blue hover:underline"
         >
           {showAll ? "show less" : "show more"}
         </button>

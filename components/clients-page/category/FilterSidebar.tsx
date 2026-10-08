@@ -15,7 +15,7 @@ export default function FilterSidebar({
   onToggle,
 }: FilterSidebarProps) {
   return (
-    <div className="flex flex-col divide-y divide-subtext-gray2/30">
+    <div className="flex flex-col gap-2 divide-y divide-subtext-gray2/30">
       {FILTER_GROUPS.map((group) => (
         <FilterGroup
           key={group.key}
