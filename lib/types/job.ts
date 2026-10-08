@@ -1,3 +1,4 @@
+
 export type JobType = "job" | "internship";
 
 export interface JobCompany {
@@ -16,4 +17,14 @@ export interface Job {
   type: JobType;
   daysLeft: number;
   company: JobCompany;
+
+  /* Used by the category page filters.
+     Each value is an option `id` from lib/constants/job-filters.ts */
+  level: string;
+  employmentType: string;
+  education: string;
+  industry: string;
+
+  /** ISO date string, used by "Latest" sorting. */
+  postedAt: string;
 }

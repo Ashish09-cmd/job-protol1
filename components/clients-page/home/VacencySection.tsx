@@ -8,7 +8,7 @@ import JobTabs, { type JobTab } from "@/components/ui/JobTabs";
 import { MOCK_JOBS } from "@/lib/constants/mock-jobs";
 
 /** Page the "Explore Opportunities" button navigates to. */
-const JOB_CATEGORIES_PATH = "/job-categories";
+const JOB_CATEGORIES_PATH = "/category";
 
 /** 4 columns x 4 rows. Keep in sync with the grid's lg:grid-cols-4. */
 const MAX_VISIBLE_JOBS = 16;
@@ -72,7 +72,7 @@ export default function VacencySection() {
           }`}
         >
           {visibleJobs.length > 0 ? (
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
               {visibleJobs.map((job) => (
                 <JobCard key={job.id} job={job} />
               ))}
