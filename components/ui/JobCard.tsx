@@ -38,9 +38,12 @@ export default function JobCard({ job }: JobCardProps) {
         </div>
 
         <div className="flex min-w-0 flex-col gap-2">
-          <Link href={""} className="text-vxs font-bold font-manrope line-height-2xl text-text-heading">
+          <Link
+            href={`/${job.slug}`}
+            className="text-vxs font-bold font-manrope line-height-2xl text-text-heading"
+          >
             {title}
-          </Link >
+          </Link>
           <Link
             href={`/companies/${company.slug}`}
             className="truncate uppercase text-primary-blue font-semibold line-height-3xl text-vvxs"
@@ -69,7 +72,7 @@ export default function JobCard({ job }: JobCardProps) {
 
         <div className="flex items-center gap-2 justify-between">
           <Link
-            href={`/jobs/${job.slug}`}
+            href={`/${job.slug}`}
             className="text-vxs font-medium line-height-sm text-primary-blue font-inter flex items-center gap-1"
           >
             <span>View Role</span>
