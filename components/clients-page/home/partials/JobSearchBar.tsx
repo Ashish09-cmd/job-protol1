@@ -11,12 +11,16 @@ import {
   type KeyboardEvent,
 } from "react";
 import { useRouter } from "next/navigation";
-import { JOB_SUGGESTIONS, POPULAR_JOB_SUGGESTIONS } from "@/lib/constants/job-suggestions";
+import {
+  JOB_SUGGESTIONS,
+  POPULAR_JOB_SUGGESTIONS,
+} from "@/lib/constants/job-suggestions";
+import {
+  SEARCH_PARAM,
+  SEARCH_PATH,
+  buildSearchUrl,
+} from "@/lib/constants/search";
 
-
-/** Route that renders the job listing results. Adjust to match your app. */
-const SEARCH_PATH = "/jobs";
-const SEARCH_PARAM = "search";
 const MAX_SUGGESTIONS = 6;
 
 function getSuggestions(query: string): string[] {
@@ -89,21 +93,73 @@ function BriefcaseIcon({ className }: { className?: string }) {
   );
 }
 
+interface JobSearchBarProps {
+  className?: string;
+  /** Text to start with, e.g. the current search on the results page. */
+  initialQuery?: string;
+  /**
+   * Redirect mode, used on the home hero. The bar is only a doorway: clicking
+   * the input, pressing Enter, or clicking the Search button opens the search
+   * page. Nothing is typed here, so there are no suggestions.
+   * Tabbing into the field alone does not navigate.
+   */
+  redirectOnClick?: boolean;
+  /** Focus the input when it appears. */
+  autoFocus?: boolean;
+  /** "hero" = home page look, "page" = search results page look. */
+  variant?: "hero" | "page";
+  buttonLabel?: string;
+  /** Show the job-title suggestions dropdown while typing. Defaults to true. */
+  enableSuggestions?: boolean;
+}
+
 export default function JobSearchBar({
   className = "",
-}: {
-  className?: string;
-}) {
+  initialQuery = "",
+  redirectOnClick = false,
+  autoFocus = false,
+  variant = "hero",
+  buttonLabel = "Search",
+  enableSuggestions = true,
+}: JobSearchBarProps) {
   const router = useRouter();
   const listboxId = useId();
   const containerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(initialQuery);
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
 
+  const isPage = variant === "page";
   const suggestions = useMemo(() => getSuggestions(query), [query]);
-  const showSuggestions = isOpen && suggestions.length > 0;
+  // In redirect mode the bar is only a doorway to the search page, so there
+  // is nothing to type and no suggestions to show.
+  const hasSuggestions = enableSuggestions && !redirectOnClick;
+  const showSuggestions = isOpen && hasSuggestions && suggestions.length > 0;
+
+  // Only a bar with a dropdown is announced as a combobox.
+  const comboboxProps = !hasSuggestions
+    ? {}
+    : {
+        role: "combobox",
+        "aria-expanded": showSuggestions,
+        "aria-controls": listboxId,
+        "aria-autocomplete": "list" as const,
+        "aria-activedescendant":
+          showSuggestions && activeIndex >= 0
+            ? `${listboxId}-option-${activeIndex}`
+            : undefined,
+      };
+
+  // Load the search page in the background so the click redirect feels instant.
+  useEffect(() => {
+    if (redirectOnClick) router.prefetch(SEARCH_PATH);
+  }, [redirectOnClick, router]);
+
+  useEffect(() => {
+    if (autoFocus) inputRef.current?.focus();
+  }, [autoFocus]);
 
   // Close the dropdown when clicking outside the search bar.
   useEffect(() => {
@@ -118,12 +174,12 @@ export default function JobSearchBar({
 
   const submitSearch = (value: string) => {
     const term = value.trim();
-    if (!term) return;
 
     setQuery(term);
     setIsOpen(false);
     setActiveIndex(-1);
-    router.push(`${SEARCH_PATH}?${SEARCH_PARAM}=${encodeURIComponent(term)}`);
+    // An empty term still opens the search page (it just lists every job).
+    router.push(buildSearchUrl(term));
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -137,7 +193,25 @@ export default function JobSearchBar({
     submitSearch(query);
   };
 
+  const goToSearchPage = () => router.push(buildSearchUrl(query));
+
+  const handleInputClick = () => {
+    if (redirectOnClick) goToSearchPage();
+  };
+
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    // Redirect mode: Enter opens the search page, every other key is ignored.
+    if (redirectOnClick) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        goToSearchPage();
+      }
+      return;
+    }
+
+    // No dropdown: arrow keys do nothing and Enter submits the form normally.
+    if (!hasSuggestions) return;
+
     switch (event.key) {
       case "ArrowDown":
         event.preventDefault();
@@ -167,39 +241,48 @@ export default function JobSearchBar({
       <form
         onSubmit={handleSubmit}
         role="search"
-        className="flex items-center gap-2 rounded-full border border-primary-blue/15 bg-white p-2 px-5 shadow-[0_8px_30px_rgba(61,90,254,0.10)] transition-shadow focus-within:border-primary-blue/40 focus-within:shadow-[0_8px_30px_rgba(61,90,254,0.18)]"
+        className={`flex items-center gap-2 rounded-full border bg-white transition-shadow ${
+          isPage
+            ? "border-transparent p-2 shadow-[0_6px_24px_rgba(15,23,42,0.10)] focus-within:shadow-[0_8px_30px_rgba(61,90,254,0.20)]"
+            : "border-primary-blue/15 p-1.5 shadow-[0_8px_30px_rgba(61,90,254,0.10)] focus-within:border-primary-blue/40 focus-within:shadow-[0_8px_30px_rgba(61,90,254,0.18)]"
+        }`}
       >
-        <SearchIcon className="ml-3 size-5 shrink-0 text-text-secondary-color" />
+        <SearchIcon
+          className={`ml-3 size-5 shrink-0 ${
+            isPage ? "text-primary-blue" : "text-text-secondary-color"
+          }`}
+        />
 
         <input
+          ref={inputRef}
           type="text"
           name={SEARCH_PARAM}
           value={query}
           onChange={handleChange}
-          onFocus={() => setIsOpen(true)}
+          onClick={handleInputClick}
+          onFocus={() => {
+            if (hasSuggestions) setIsOpen(true);
+          }}
           onKeyDown={handleKeyDown}
+          // Read-only in redirect mode: no cursor and no phone keyboard flashing up.
+          readOnly={redirectOnClick}
           placeholder="Job titles, keywords or companies"
           autoComplete="off"
-          role="combobox"
           aria-label="Search jobs"
-          aria-expanded={showSuggestions}
-          aria-controls={listboxId}
-          aria-autocomplete="list"
-          aria-activedescendant={
-            showSuggestions && activeIndex >= 0
-              ? `${listboxId}-option-${activeIndex}`
-              : undefined
-          }
-          className="min-w-0 flex-1 bg-transparent py-2 text-xs font-medium font-inter text-text-heading placeholder:text-xs placeholder:font-regular outline-none placeholder:text-subtext-light"
+          {...comboboxProps}
+          className={`min-w-0 flex-1 bg-transparent py-2 font-medium font-inter text-text-heading outline-none placeholder:text-text-secondary-color ${
+            isPage ? "text-sm" : "text-xs"
+          } ${redirectOnClick ? "cursor-pointer" : ""}`}
         />
 
-        {query && (
+        {query && !redirectOnClick && (
           <button
             type="button"
             onClick={() => {
               setQuery("");
               setActiveIndex(-1);
               setIsOpen(true);
+              inputRef.current?.focus();
             }}
             aria-label="Clear search"
             className="rounded-full p-1.5 text-text-secondary-color transition-colors hover:bg-primary-blue/10 hover:text-primary-blue"
@@ -220,9 +303,11 @@ export default function JobSearchBar({
 
         <button
           type="submit"
-          className="shrink-0 cursor-pointer rounded-full bg-primary-blue px-5 py-2.5 text-xs font-semibold font-manrope text-white transition-colors hover:bg-primary-blue/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue sm:px-7"
+          className={`shrink-0 rounded-full bg-primary-blue px-5 py-2.5 font-semibold font-manrope text-white transition-colors hover:bg-primary-blue/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue sm:px-7 ${
+            isPage ? "text-vxs uppercase" : "text-xs"
+          }`}
         >
-          FIND JOB
+          {buttonLabel}
         </button>
       </form>
 

@@ -11,7 +11,7 @@ import React from "react";
  */
 const STATIC_GENERAL = {
   detail:
-    "Broadway Kids helps children build real-world tech skills through coding, robotics, and math enrichment programs taught by experienced instructors.",
+    "Connecting skilled people with companies worth joining. Verified employers, and a straightforward job search experience.",
   address: "Shree Ganesh Marg, Subidhanagar, Tinkune, Kathmandu 44600, Nepal",
 };
 
@@ -271,8 +271,6 @@ const Footer = () => {
                         </div>
                       ))}
                     </div>
-
-                 
                   </div>
                 </div>
               </div>
@@ -280,8 +278,8 @@ const Footer = () => {
           </div>
           <div className="sub-footer bg-[#191C1F80]">
             <div className="max-w-7xl mx-auto py-8">
-              <p className="text-xs font-medium line-height-xs text-white text-center">
-                A product of Broadway Infosys. © 2026 Broadway Kids. All rights
+              <p className="text-xs font-regular line-height-xs text-white/60 text-center">
+                A product of Broadway Infosys. © 2026. Broadway Jobs. All rights
                 reserved.
               </p>
             </div>
