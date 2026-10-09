@@ -36,6 +36,7 @@ export default function JobCard({ job }: JobCardProps) {
             </span>
           )}
         </div>
+        
 
         <div className="flex min-w-0 flex-col gap-2">
           <Link
