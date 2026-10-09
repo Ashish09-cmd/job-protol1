@@ -102,7 +102,7 @@ export default function CategoryJobs({
       onClick={() => setIsFilterOpen((open) => !open)}
       aria-expanded={isFilterOpen}
       aria-controls="category-filters"
-      className="flex cursor-pointer items-center gap-2 rounded-md border border-text-heading px-4 py-2 text-sm font-regular font-inter text-text-heading transition-colors hover:bg-primary-blue/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue"
+      className="flex cursor-pointer items-center gap-2 rounded-md border  px-4 py-2 text-sm font-regular font-inter text-text-heading transition-colors hover:bg-primary-blue/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue"
     >
       <Icon icon="ic:round-filter-list" className="text-lg" />
       Filter
@@ -216,7 +216,7 @@ export default function CategoryJobs({
                 }`}
               >
                 {visibleJobs.map((job) => (
-                    <JobCard job={job} />
+                    <JobCard job={job} key={job.id}/>
                 ))}
               </ul>
             ) : (
