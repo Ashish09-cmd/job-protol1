@@ -382,7 +382,7 @@ const Header = () => {
                 </ul>
                 <div className="">
                   <Link
-                    href={"/employer-zone"}
+                    href={"/employer/login"}
                     className="flex items-center gap-1.6 text-sm line-height-sm text-subtext-primary-color"
                   >
                     <span>For Company</span>
