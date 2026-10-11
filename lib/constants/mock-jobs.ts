@@ -18,13 +18,21 @@ const TEMPLATES = [
   },
   {
     title: "Graphics Designer & Video Editor Specialist",
-    company: { name: "Helvetas Nepal", slug: "helvetas-nepal" },
+    company: {
+      name: "Helvetas Nepal",
+      slug: "helvetas-nepal",
+      logo: "/assets/partners/cloud-factory.webp",
+    },
     industry: "creative-designing-graphics",
     altIndustry: "human-resource-organization",
   },
   {
     title: "UI/UX Designer",
-    company: { name: "Code Himalaya", slug: "code-himalaya" },
+    company: {
+      name: "Code Himalaya",
+      slug: "code-himalaya",
+      logo: "/assets/partners/government-of-nepal.webp",
+    },
     industry: "it-telecom-services",
     altIndustry: "creative-designing-graphics",
   },
@@ -33,6 +41,7 @@ const TEMPLATES = [
     company: {
       name: "Peakora Tech & Workforce Solutions",
       slug: "peakora-tech-workforce-solutions",
+      logo: "/assets/partners/code-himalaya.jpg",
     },
     industry: "it-telecom-services",
     altIndustry: "administration-development",

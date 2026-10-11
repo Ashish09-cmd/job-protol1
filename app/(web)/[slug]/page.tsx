@@ -53,7 +53,7 @@ export default async function JobDetailsPage({ params }: JobPageProps) {
     <article>
       <JobDetailsHeader job={job} />
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 gap-10 py-10 lg:grid-cols-[minmax(0,1fr)_398px] lg:gap-16">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 gap-10 py-12 lg:grid-cols-[minmax(0,1fr)_398px] lg:gap-16">
         <div className="flex min-w-0 max-w-3xl flex-col gap-10">
           <section
             aria-labelledby="about-the-role"

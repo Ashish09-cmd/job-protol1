@@ -12,14 +12,16 @@ export default function JobMeta({ job }: JobMetaProps) {
   const { company, location, publishedOn, applyBefore } = job;
 
   return (
-    <ul className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-regular font-inter text-text-secondary-color">
-      <li className="flex items-center gap-2">
-        <Icon icon="mdi:office-building-outline" className="text-base" />
+    <ul className="flex flex-wrap  items-center gap-x-4 gap-y-3 text-xs font-regular font-inter text-text-secondary-color">
+      <li className="">
         <Link
           href={`/companies/${company.slug}`}
-          className="transition-colors hover:text-primary-blue"
+          className="transition-colors hover:text-primary-blue flex items-center gap-2"
         >
-          {company.name}
+          <span>
+            <Icon icon="mdi:office-building-outline" className="text-xs" />
+          </span>
+          <span>{company.name}</span>
         </Link>
       </li>
 

@@ -10,7 +10,7 @@ import type { JobDetail } from "@/lib/types/job-detail";
  * Height of the site navbar in px. The compact bar sticks right below it.
  * Set to 0 if your navbar scrolls away with the page.
  */
-const STICKY_OFFSET_PX = 90;
+const STICKY_OFFSET_PX =90;
 
 const SHADOW = "shadow-[0_2px_12px_rgba(15,23,42,0.06)]";
 
@@ -34,7 +34,7 @@ function CompanyLogo({
         <img
           src={logo}
           alt={`${name} logo`}
-          className="h-full w-full object-contain p-2"
+          className="h-full w-full object-cover"
         />
       ) : (
         <span className="flex h-full w-full items-center justify-center text-lg-sm font-bold font-manrope text-primary-blue">
@@ -89,17 +89,17 @@ export default function JobDetailsHeader({ job }: JobDetailsHeaderProps) {
           <CompanyLogo
             name={company.name}
             logo={company.logo}
-            className={`relative z-10 h-[90px] w-[182px] rounded-lg border border-[#aeaeb243] shadow-sm ${
+            className={`relative z-10 h-22.5 w-45.5 p-2 rounded-lg border border-subtext-gray1/40 shadow-sm ${
               company.banner ? "-mt-11" : "mt-8"
             }`}
           />
 
           <div
             ref={titleRowRef}
-            className="flex flex-col gap-6 py-6 lg:flex-row lg:items-start lg:justify-between"
+            className="flex flex-col gap-6 py-6 lg:flex-row lg:items-center lg:justify-between"
           >
             <div className="flex min-w-0 flex-col gap-4">
-              <h1 className="text-lg-xl font-bold font-manrope line-height-2xl text-text-heading">
+              <h1 className="text-xl font-bold font-manrope line-height-2xl text-text-heading">
                 {job.title}
               </h1>
               <JobMeta job={job} />
@@ -123,23 +123,23 @@ export default function JobDetailsHeader({ job }: JobDetailsHeaderProps) {
       <div
         aria-hidden={!isStuck}
         style={{ top: STICKY_OFFSET_PX }}
-        className={`fixed inset-x-0 z-30 bg-white transition-all duration-300 ease-out motion-reduce:transition-none ${SHADOW} ${
+        className={`fixed inset-x-0 z-30 top-10 bg-white transition-all duration-300 ease-out motion-reduce:transition-none ${SHADOW} ${
           isStuck
             ? "translate-y-0 opacity-100"
             : "pointer-events-none invisible -translate-y-2 opacity-0"
         }`}
       >
-        <div className="max-w-7xl mx-auto flex items-start justify-between gap-6 py-4">
-          <div className="flex min-w-0 items-start gap-4">
+        <div className="max-w-7xl mx-auto flex items-start justify-between gap-6 py-8">
+          <div className="flex min-w-0 items-center gap-4">
             <CompanyLogo
               name={company.name}
               logo={company.logo}
               className="hidden h-10 w-[75px] shrink-0 sm:block"
             />
-            <div className="flex min-w-0 flex-col gap-3">
-              <p className="text-base font-semibold font-manrope text-text-heading">
+            <div className="flex min-w-0 flex-col gap-4">
+              <h2 className="text-lg font-semibold font-manrope text-text-heading">
                 {job.title}
-              </p>
+              </h2>
               <JobMeta job={job} />
               <JobTags job={job} />
             </div>

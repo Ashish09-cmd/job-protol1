@@ -22,12 +22,12 @@ export default function JobSection({ title, items }: JobSectionProps) {
         {items.map((item) => (
           <li
             key={item}
-            className="flex items-start gap-3 text-sm font-regular font-inter line-height-sm text-text-secondary-color"
+            className="flex items-start gap-3 text-xs font-regular font-inter line-height-sm text-text-secondary-color"
           >
             <Icon
               icon="mdi:check"
               aria-hidden="true"
-              className="mt-0.5 shrink-0 text-lg text-primary-blue"
+              className="mt-0.5 shrink-0 text-sm text-primary-blue"
             />
             <span>{item}</span>
           </li>

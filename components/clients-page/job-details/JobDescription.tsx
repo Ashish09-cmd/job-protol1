@@ -69,7 +69,7 @@ export default function JobDescription({ paragraphs }: JobDescriptionProps) {
           onClick={() => setIsExpanded((value) => !value)}
           aria-expanded={isExpanded}
           aria-controls={contentId}
-          className="flex w-fit cursor-pointer items-center gap-1.5 text-sm font-medium font-inter uppercase text-primary-blue hover:underline"
+          className="flex  cursor-pointer w-fit items-center gap-1.5 text-xs font-medium font-inter uppercase text-primary-blue hover:underline"
         >
           {isExpanded ? "Read less" : "Read more"}
           <Icon
