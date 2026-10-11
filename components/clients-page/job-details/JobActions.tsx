@@ -14,7 +14,7 @@ interface JobActionsProps {
 }
 
 const OUTLINE_BUTTON =
-  "flex h-10 items-center justify-center rounded-md border border-text-heading/70 text-text-heading transition-colors hover:bg-primary-blue/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue cursor-pointer";
+  "flex py-2 px-4  items-center justify-center rounded-md border border-subtext-gray2 text-label1 transition-colors hover:bg-primary-blue/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue cursor-pointer";
 
 export default function JobActions({
   title,
@@ -43,10 +43,10 @@ export default function JobActions({
   };
 
   return (
-    <div className="flex shrink-0 items-center gap-4">
+    <div className="flex shrink-0 items-center gap-5">
       <Link
         href={applyHref}
-        className="flex h-10 items-center rounded-md bg-primary-blue px-5 text-sm font-medium font-inter text-white transition-colors hover:bg-primary-blue/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue"
+        className="flex py-2 px-4 items-center rounded-md bg-blue-400  text-xs line-height-sm font-medium font-inter text-white transition-colors hover:bg-primary-blue/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue"
       >
         Apply Now
       </Link>
@@ -58,8 +58,8 @@ export default function JobActions({
         aria-label={variant === "compact" ? "Save for later" : undefined}
         className={`${OUTLINE_BUTTON} ${
           variant === "compact"
-            ? "w-10"
-            : "gap-2 px-5 text-sm font-regular font-inter"
+            ? ""
+            : "gap-2 py-2 px-4 text-xs font-regular   font-inter"
         }`}
       >
         <Icon
@@ -74,7 +74,7 @@ export default function JobActions({
         onClick={handleShare}
         aria-label="Share this job"
         title={isCopied ? "Link copied" : "Share"}
-        className={`${OUTLINE_BUTTON} w-10`}
+        className={`${OUTLINE_BUTTON} text-xs`}
       >
         <Icon icon={isCopied ? "mdi:check" : "mdi:share-variant-outline"} />
       </button>
