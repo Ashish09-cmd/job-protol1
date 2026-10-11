@@ -48,7 +48,7 @@ export default function FilterGroup({
               type="checkbox"
               checked={selectedIds.includes(option.id)}
               onChange={() => onToggle(option.id)}
-              className="size-4 shrink-0 cursor-pointer rounded accent-primary-blue"
+              className="size-4 shrink-0 cursor-pointer  border border-gray-400 rounded accent-primary-blue"
             />
             <span>{option.label}</span>
           </label>

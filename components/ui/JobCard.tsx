@@ -43,8 +43,8 @@ export default function JobCard({ job }: JobCardProps) {
             href={`/${job.slug}`}
             className="text-vxs font-bold font-manrope line-height-2xl text-text-heading"
           >
-            {title}
-          </Link>
+            {title} 
+          </Link> 
           <Link
             href={`/companies/${company.slug}`}
             className="truncate uppercase text-primary-blue font-semibold line-height-3xl text-vvxs"

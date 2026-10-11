@@ -20,7 +20,7 @@ import {
 import type { Job } from "@/lib/types/job";
 
 /** 12 fits both layouts: 3 columns (filter open) and 4 columns (closed). */
-const PAGE_SIZE = 12;
+const PAGE_SIZE = 24;
 
 /** Start with the filter sidebar open? (On mobile it stacks above the list.) */
 const FILTER_OPEN_BY_DEFAULT = false;
@@ -102,7 +102,7 @@ export default function CategoryJobs({
       onClick={() => setIsFilterOpen((open) => !open)}
       aria-expanded={isFilterOpen}
       aria-controls="category-filters"
-      className="flex cursor-pointer items-center gap-2 rounded-md border  px-4 py-2 text-sm font-regular font-inter text-text-heading transition-colors hover:bg-primary-blue/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue"
+      className="flex cursor-pointer items-center gap-2 rounded-md border border-subtext-primary-color/20  px-4 py-2 text-sm font-regular font-inter text-text-heading transition-colors hover:bg-primary-blue/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue"
     >
       <Icon icon="ic:round-filter-list" className="text-lg" />
       Filter
@@ -119,7 +119,7 @@ export default function CategoryJobs({
       type="button"
       onClick={handleClear}
       disabled={activeFilterCount === 0}
-      className="cursor-pointer text-vxs font-medium font-inter text-primary-blue hover:underline disabled:cursor-not-allowed disabled:opacity-40 disabled:no-underline"
+      className="cursor-pointer text-vxs font-regular font-inter text-primary-blue hover:underline disabled:cursor-not-allowed disabled:opacity-40 disabled:no-underline"
     >
       Clear All
     </button>
@@ -175,7 +175,7 @@ export default function CategoryJobs({
           288px (open) and 0px (closed), so the list smoothly takes the space.
         */}
         <div
-          className={`grid grid-cols-1 transition-[grid-template-columns,column-gap] duration-300 ease-out motion-reduce:transition-none ${
+          className={`grid grid-cols-1 items-start transition-[grid-template-columns,column-gap] duration-300 ease-out motion-reduce:transition-none ${
             isFilterOpen
               ? "lg:grid-cols-[288px_minmax(0,1fr)] lg:gap-x-8"
               : "lg:grid-cols-[0px_minmax(0,1fr)] lg:gap-x-0"
@@ -193,7 +193,7 @@ export default function CategoryJobs({
             <div className="h-full border-b border-subtext-gray2/30 pb-6 lg:w-72 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-6">
               {isToolbarInSidebar && (
                 <div className="mb-6 flex items-center justify-between gap-4">
-                  {filterButton}
+                  {filterButton} 
                   {clearButton}
                 </div>
               )}
@@ -216,7 +216,7 @@ export default function CategoryJobs({
                 }`}
               >
                 {visibleJobs.map((job) => (
-                    <JobCard job={job} key={job.id}/>
+                    <JobCard job={job} key={job.id}/> 
                 ))}
               </ul>
             ) : (

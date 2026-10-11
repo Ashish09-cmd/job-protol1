@@ -119,7 +119,7 @@ export default function JobSearchBar({
   redirectOnClick = false,
   autoFocus = false,
   variant = "hero",
-  buttonLabel = "Search",
+  buttonLabel = "FIND JOB",
   enableSuggestions = true,
 }: JobSearchBarProps) {
   const router = useRouter();
@@ -241,14 +241,14 @@ export default function JobSearchBar({
       <form
         onSubmit={handleSubmit}
         role="search"
-        className={`flex items-center gap-2 rounded-full border bg-white transition-shadow ${
+        className={`flex items-center gap-2 py-2 px-5 rounded-2xl border bg-white transition-shadow ${
           isPage
             ? "border-transparent p-2 shadow-[0_6px_24px_rgba(15,23,42,0.10)] focus-within:shadow-[0_8px_30px_rgba(61,90,254,0.20)]"
             : "border-primary-blue/15 p-1.5 shadow-[0_8px_30px_rgba(61,90,254,0.10)] focus-within:border-primary-blue/40 focus-within:shadow-[0_8px_30px_rgba(61,90,254,0.18)]"
         }`}
       >
         <SearchIcon
-          className={`ml-3 size-5 shrink-0 ${
+          className={` size-5 shrink-0 ${
             isPage ? "text-primary-blue" : "text-text-secondary-color"
           }`}
         />
@@ -270,7 +270,7 @@ export default function JobSearchBar({
           autoComplete="off"
           aria-label="Search jobs"
           {...comboboxProps}
-          className={`min-w-0 flex-1 bg-transparent py-2 font-medium font-inter text-text-heading outline-none placeholder:text-text-secondary-color ${
+          className={`min-w-0 flex-1 bg-transparent py-2 font-regular font-inter text-text-heading outline-none placeholder:text-xs placeholder:text-subtext-light/60 ${
             isPage ? "text-sm" : "text-xs"
           } ${redirectOnClick ? "cursor-pointer" : ""}`}
         />
