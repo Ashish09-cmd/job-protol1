@@ -66,7 +66,7 @@ export default function LoginForm() {
             {errors.root.message}
           </p>
         )}
-        <Button type="submit" fullWidth loading={isSubmitting}>
+        <Button type="submit"  fullWidth loading={isSubmitting}>
           Log in
         </Button>
       </div>
