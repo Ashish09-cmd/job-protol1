@@ -5,7 +5,7 @@ import Footer from "../components/layout/Footer";
 
 export default function LayoutClient({ children }: { children: React.ReactNode }) {
      const pathname = usePathname();
-     const isDashboard = pathname === "/jobseeker";
+     const isDashboard = pathname === "/jobseeker" || pathname === "/jobseeker/applications";
   return (
     <>
       {!isDashboard && <Header />}
