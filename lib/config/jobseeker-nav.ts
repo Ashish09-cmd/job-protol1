@@ -17,7 +17,7 @@ export const JOBSEEKER_NAV: readonly DashboardNavGroup[] = [
     label: "Workspace",
     items: [
       {
-        label: "Overview",
+        label: "Overview ",
         href: JOBSEEKER_HOME,
         icon: "mdi:view-dashboard-outline",
       },

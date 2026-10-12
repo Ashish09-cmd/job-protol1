@@ -83,7 +83,7 @@ export default function DashboardShell({
           {sidebar}
         </aside>
 
-        <div className="flex min-h-screen flex-col lg:pl-64">
+        <div className="flex min-h-screen flex-col lg:pl-64 bg-[#F5F7F8]/20">
           {topbar}
           <main id="main-content" className="flex-1">
             {children}

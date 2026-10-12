@@ -64,7 +64,7 @@ export default function DashboardTopbar({
           <Icon
             icon="mdi:magnify"
             aria-hidden="true"
-            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-xl text-subtext-light"
+            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-lg text-subtext-light"
           />
           <input
             type="search"
