@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Icon } from "@iconify/react";
 import { JOBSEEKER_NAV, isActivePath } from "@/lib/config/jobseeker-nav";
+import { siteConfig } from "@/lib/config/site";
 
 export default function JobseekerSidebar() {
   const pathname = usePathname();
@@ -17,8 +18,8 @@ export default function JobseekerSidebar() {
       <Link href="/" aria-label="Broadway Jobs home" className="px-2">
         {/* Replace with the path of your logo file in /public */}
         <Image
-          src="/assets/logo.png"
-          alt="Broadway Jobs"
+          src={`/${siteConfig.header_logo}`}
+          alt={`/${siteConfig.header_logo_alt}`}
           width={150}
           height={40}
           priority
