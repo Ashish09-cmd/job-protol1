@@ -2,11 +2,20 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { loginSchema, LoginValues } from "@/lib/validation/auth";
 import Input from "../ui/Input";
 import Button from "../ui/button/Button";
 
-export default function LoginForm() {
+interface LoginFormProps {
+  /** Where to go after a successful login. The jobseeker dashboard by default. */
+  redirectTo?: string;
+}
+
+export default function LoginForm({
+  redirectTo = "/jobseeker",
+}: LoginFormProps) {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -20,8 +29,12 @@ export default function LoginForm() {
 
   const onSubmit = async (values: LoginValues) => {
     try {
-    
+      // TODO: replace with your real login request. It must throw (or return an
+      // error) when the email or password is wrong, so the redirect below only
+      // happens after a successful login.
       console.log(values);
+
+      router.push(redirectTo);
     } catch {
       setError("root", { message: "Invalid email or password." });
     }
@@ -66,7 +79,7 @@ export default function LoginForm() {
             {errors.root.message}
           </p>
         )}
-        <Button type="submit"  fullWidth loading={isSubmitting}>
+        <Button type="submit" fullWidth loading={isSubmitting}>
           Log in
         </Button>
       </div>
