@@ -80,7 +80,7 @@ export default function LoginForm({
           </p>
         )}
         <Button type="submit" fullWidth loading={isSubmitting}>
-          Log in
+          Log in 
         </Button>
       </div>
     </form>
