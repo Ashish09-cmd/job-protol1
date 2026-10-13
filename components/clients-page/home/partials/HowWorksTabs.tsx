@@ -99,13 +99,14 @@ export default function HowWorksTabs({ tabs }: HowWorksTabsProps) {
                 className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4"
               >
                 {tab.steps.map((step, index) => (
-                  <li key={step.title} >
+                  // <li>
                     <StepCard
                       stepNumber={index + 1}
                       title={step.title}
                       description={step.description}
+                      key={step.title}
                     />
-                  </li>
+                  // </li>
                 ))}
               </ol>
             </div>

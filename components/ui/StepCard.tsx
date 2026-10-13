@@ -15,20 +15,22 @@ export default function StepCard({
   description,
 }: StepCardProps) {
   return (
-    <article className="flex flex-col gap-3.5 items-center text-center py-6 px-4 bg-white rounded-md border border-separator4">
-      {/* Decorative: the surrounding <ol> already conveys the order. */}
-      <span
-        aria-hidden="true"
-        className="text-lg-sm font-bold line-height-2xl text-primary-blue font-manrope"
-      >
-        {String(stepNumber).padStart(2, "0")}
-      </span>
-      <h3 className="text-md font-semibold font-inter text-subtext-primary-color line-height-2xl">
-        {title}
-      </h3>
-      <p className="text-xs font-regular line-height-sm text-subtext-light font-inter">
-        {description}
-      </p>
-    </article>
+    <li className="py-6 px-4 bg-white rounded-md border border-separator4">
+      <article className="flex flex-col gap-3.5 items-center text-center">
+        {/* Decorative: the surrounding <ol> already conveys the order. */}
+        <span
+          aria-hidden="true"
+          className="text-lg-sm font-bold line-height-2xl text-primary-blue font-manrope"
+        >
+          {String(stepNumber).padStart(2, "0")}
+        </span>
+        <h3 className="text-md font-semibold font-inter text-subtext-primary-color line-height-2xl">
+          {title}
+        </h3>
+        <p className="text-xs font-regular line-height-sm text-subtext-light font-inter">
+          {description}
+        </p>
+      </article>
+    </li>
   );
 }
