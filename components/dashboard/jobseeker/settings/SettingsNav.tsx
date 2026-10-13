@@ -33,11 +33,11 @@ export default function SettingsNav() {
   const pathname = usePathname();
 
   return (
-    <aside className="flex h-fit flex-col gap-4 rounded-2xl border sticky top-22 border-subtext-gray2/30 bg-white p-4 shadow-sm">
-      <nav aria-label="Settings sections" className="flex flex-col gap-2">
+    <aside className="flex h-fit flex-col gap-4 rounded-2xl sticky border border-gray-200 top-22 bg-white py-4 px-3.5">
+      <nav aria-label="Settings sections" className="flex flex-col gap-2 pb-5 border-b border-separator4">
         <p className="px-3 pt-1 text-vxs font-medium uppercase tracking-widest font-inter text-subtext-light">
           Settings
-        </p>
+        </p> 
         <ul role="list" className="flex flex-col gap-1">
           {SETTINGS_TABS.map((tab) => {
             const active =
@@ -48,15 +48,15 @@ export default function SettingsNav() {
                 <Link
                   href={tab.href}
                   aria-current={active ? "page" : undefined}
-                  className={`flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-inter transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue ${
+                  className={`flex items-center gap-2 rounded-lg px-3 py-3 text-xs font-manrope transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue ${
                     active
-                      ? "bg-separator3/45 font-medium text-text-heading"
-                      : "text-text-secondary-color hover:bg-separator3/30"
+                      ? "bg-separator5/40 font-medium text-text-heading"
+                      : "text-subtext-light font-medium hover:bg-separator3/30"
                   }`}
                 >
                   <Icon
                     icon={tab.icon}
-                    className="text-xl"
+                    className="text-sm"
                     aria-hidden="true"
                   />
                   <span className="flex-1">{tab.label}</span>
@@ -74,7 +74,7 @@ export default function SettingsNav() {
         </ul>
       </nav>
 
-      <div className="flex flex-col gap-1 border-t border-subtext-gray2/30 px-3 pt-4">
+      <div className="flex flex-col gap-1.5 ">
         <p className="text-vxs font-semibold font-inter text-primary-blue">
           Your data is yours
         </p>
