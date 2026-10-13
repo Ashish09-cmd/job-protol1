@@ -3,7 +3,6 @@ import type {
   MasterProfile,
   SavedJob,
 } from "@/lib/types/jobseeker-profile";
-
 // TODO: replace every function below with a real API call. Keep the return types.
 
 export async function getSavedJobs(): Promise<SavedJob[]> {
