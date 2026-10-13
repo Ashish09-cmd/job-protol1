@@ -28,7 +28,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.variable} ${manrope.variable} antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <LayoutClient>{children}</LayoutClient>
+        {/* <LayoutClient>{children}</LayoutClient> */}
+        {children}
       </body>
     </html>
   );

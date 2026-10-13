@@ -56,7 +56,7 @@ export default function CompanyLogin() {
                   <div className="flex flex-col gap-4">
                     <Button variant="neutral">
                       <Icon icon={"material-icon-theme:google"} />
-                      Google
+                      Log In with Google
                     </Button>
                     <div className="flex items-center gap-1 justify-center">
                       <p className="text-xs font-medium font-inter text-subtext-gray1 line-height-sm ">

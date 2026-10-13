@@ -5,12 +5,12 @@ import Footer from "../components/layout/Footer";
 
 export default function LayoutClient({ children }: { children: React.ReactNode }) {
      const pathname = usePathname();
-     const isAuthPage = pathname === "/registeradd" || pathname === "/loginadd";
+     const isDashboard = pathname === "/jobseeker" || pathname === "/jobseeker/applications";
   return (
     <>
-      {!isAuthPage && <Header />}
+      {!isDashboard && <Header />}
       <main>{children}</main>
-      {!isAuthPage && <Footer />}
+      {!isDashboard && <Footer />}
     </>
   );
 }
