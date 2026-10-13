@@ -29,7 +29,7 @@ function Field({
   readOnly,
 }: FieldProps) {
   return (
-    <label className="flex flex-col gap-1 rounded-xl border border-subtext-gray2/30 px-4 py-3 focus-within:border-primary-blue focus-within:ring-2 focus-within:ring-primary-blue/20">
+    <label className="flex flex-col gap-2 rounded-xl border border-subtext-gray2/30 px-4 py-3 focus-within:border-primary-blue focus-within:ring-2 focus-within:ring-primary-blue/20">
       <span className="inline-flex items-center gap-1.5 text-vvxs font-inter text-subtext-light">
         <Icon
           icon={icon}
@@ -44,7 +44,7 @@ function Field({
         readOnly={readOnly}
         autoComplete={autoComplete}
         onChange={(event) => onChange?.(event.target.value)}
-        className="w-full bg-transparent text-sm font-inter text-text-secondary-color outline-none read-only:cursor-not-allowed"
+        className="w-full bg-transparent text-xs font-inter text-text-secondary-color outline-none read-only:cursor-not-allowed"
       />
     </label>
   );

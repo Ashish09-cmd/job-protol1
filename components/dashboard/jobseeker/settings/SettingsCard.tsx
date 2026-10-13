@@ -23,11 +23,11 @@ export default function SettingsCard({
   return (
     <section
       aria-label={title}
-      className="flex flex-col gap-5 rounded-2xl border border-subtext-gray2/30 bg-white p-5 shadow-sm sm:p-6"
+      className="flex flex-col gap-5 rounded-2xl border border-subtext-gray2/30 bg-white p-5  sm:p-6"
     >
       <header className="flex flex-col gap-2">
         <div className="flex items-center justify-between gap-4">
-          <p className="text-vxs font-medium uppercase tracking-widest font-inter text-subtext-light">
+          <p className="text-vxs font-medium uppercase tracking-widest font-inter text-primary-blue">
             {eyebrow} 
           </p>
           {viewAllHref && (
@@ -41,11 +41,11 @@ export default function SettingsCard({
             </Link>
           )}
         </div>
-        <h2 className="text-xl font-semibold font-manrope text-text-heading">
-          {title}
+        <h2 className="text-lg font-bold font-manrope text-text-heading line-height-2xl">
+          {title} 
         </h2>
         {description && (
-          <p className="text-sm font-inter text-text-secondary-color">
+          <p className="text-xs line-height-sm  font-inter text-text-secondary-color">
             {description}
           </p>
         )}

@@ -15,7 +15,7 @@ export default function StepCard({
   description,
 }: StepCardProps) {
   return (
-    <article className="flex flex-col gap-3.5 items-center text-center">
+    <article className="flex flex-col gap-3.5 items-center text-center py-6 px-4 bg-white rounded-md border border-separator4">
       {/* Decorative: the surrounding <ol> already conveys the order. */}
       <span
         aria-hidden="true"
@@ -23,10 +23,10 @@ export default function StepCard({
       >
         {String(stepNumber).padStart(2, "0")}
       </span>
-      <h3 className="text-lg-sm font-semibold font-inter text-subtext-primary-color line-height-2xl">
+      <h3 className="text-md font-semibold font-inter text-subtext-primary-color line-height-2xl">
         {title}
       </h3>
-      <p className="text-sm font-regular line-height-sm text-subtext-light font-inter">
+      <p className="text-xs font-regular line-height-sm text-subtext-light font-inter">
         {description}
       </p>
     </article>

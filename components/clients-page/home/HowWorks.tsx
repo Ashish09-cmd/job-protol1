@@ -30,7 +30,7 @@ export default function HowWorks() {
       aria-labelledby="how-it-works-heading"
       className="bg-blue-50/40"
     >
-      <div className="max-w-7xl py-8 mx-auto flex flex-col gap-6">
+      <div className="max-w-7xl lg:py-12 py-8 mx-auto flex flex-col gap-6">
         <div className="flex flex-col max-w-3xl text-center mx-auto gap-4">
           <h2
             id="how-it-works-heading"

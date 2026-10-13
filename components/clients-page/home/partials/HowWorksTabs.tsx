@@ -67,7 +67,7 @@ export default function HowWorksTabs({ tabs }: HowWorksTabsProps) {
                 tabIndex={isActive ? 0 : -1}
                 onClick={() => setActiveId(tab.id)}
                 onKeyDown={(event) => handleKeyDown(event, index)}
-                className={`rounded-3xl px-6 py-2 text-sm font-semibold font-inter line-height-sm cursor-pointer transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue ${
+                className={`rounded-3xl px-6 py-2 text-xs font-medium font-inter line-height-sm cursor-pointer transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue ${
                   isActive
                     ? "bg-primary-blue text-white"
                     : "text-primary-blue hover:bg-primary-blue/5"
@@ -99,7 +99,7 @@ export default function HowWorksTabs({ tabs }: HowWorksTabsProps) {
                 className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4"
               >
                 {tab.steps.map((step, index) => (
-                  <li key={step.title}>
+                  <li key={step.title} >
                     <StepCard
                       stepNumber={index + 1}
                       title={step.title}

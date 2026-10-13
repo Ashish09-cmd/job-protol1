@@ -5,10 +5,10 @@ export default function SettingsLayout({ children }: { children: ReactNode }) {
   return (
     <div className="flex flex-col gap-8 px-4 py-8 sm:px-6">
       <header className="flex flex-col gap-2">
-        <h1 className="text-lg-xl font-semibold font-manrope text-text-heading">
+        <h1 className="text-lg-xl font-bold line-height-2xl font-manrope text-text-heading">
           Settings
         </h1>
-        <p className="text-sm font-inter text-text-secondary-color">
+        <p className="text-xs font-inter text-text-secondary-color font-regular line-height-sm ">
           Manage your account, visibility, alerts, and notification preferences.
         </p>
       </header>
