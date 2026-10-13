@@ -109,7 +109,7 @@ export async function getMasterProfile(): Promise<MasterProfile> {
     skillLimit: 10,
     certifications: [],
     contact: {
-      email: "prajana@example.com",
+      email: "password@boradwayjob.com",
       phones: ["+977 98XXXXXXXX"],
       address: "Kathmandu, Nepal",
     },

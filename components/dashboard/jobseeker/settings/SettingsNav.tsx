@@ -8,6 +8,11 @@ export const SETTINGS_BASE = "/jobseeker/settings";
 
 const SETTINGS_TABS = [
   {
+    label: "Account",
+    href: `${SETTINGS_BASE}/account`,
+    icon: "mdi:account-outline",
+  },
+  {
     label: "Profile & CV",
     href: `${SETTINGS_BASE}/profile`,
     icon: "mdi:file-document-outline",
@@ -22,11 +27,6 @@ const SETTINGS_TABS = [
     href: `${SETTINGS_BASE}/privacy-visibility`,
     icon: "mdi:shield-outline",
   },
-  {
-    label: "Account",
-    href: `${SETTINGS_BASE}/account`,
-    icon: "mdi:account-outline",
-  },
 ] as const;
 
 export default function SettingsNav() {
@@ -35,7 +35,7 @@ export default function SettingsNav() {
   return (
     <aside className="flex h-fit flex-col gap-4 rounded-2xl sticky border border-gray-200 top-22 bg-white py-4 px-3.5">
       <nav aria-label="Settings sections" className="flex flex-col gap-2 pb-5 border-b border-separator4">
-        <p className="px-3 pt-1 text-vxs font-medium uppercase tracking-widest font-inter text-subtext-light">
+        <p className="px-3 pt-1 text-vxs font-medium uppercase tracking-widest font-inter text-primary-blue">
           Settings
         </p> 
         <ul role="list" className="flex flex-col gap-1">
