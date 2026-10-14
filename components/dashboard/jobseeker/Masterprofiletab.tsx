@@ -2,30 +2,50 @@ import type { ReactNode } from "react";
 import { Icon } from "@iconify/react";
 import InitialsBadge from "@/components/ui/InitialsBadge";
 import type { MasterProfile } from "@/lib/types/jobseeker-profile";
+import type {
+  EmployerInterestStats,
+  ProfileEditTarget,
+  ProfileVisibilityStatus,
+} from "@/lib/types/profile-extras";
 import ProfileCard, { CardAction } from "./Profilecard";
+import VisibilityCard from "./profile/VisibilityCard";
+import EmployerInterestCard from "./profile/EmployerInterestCard";
 
 interface MasterProfileTabProps {
   profile: MasterProfile;
+  visibility: ProfileVisibilityStatus;
+  interest: EmployerInterestStats;
+  onEdit: (target: ProfileEditTarget) => void;
 }
 
-export default function MasterProfileTab({ profile }: MasterProfileTabProps) {
+export default function MasterProfileTab({
+  profile,
+  visibility,
+  interest,
+  onEdit,
+}: MasterProfileTabProps) {
   const limitReached = profile.skills.length >= profile.skillLimit;
 
-  // TODO: wire the Edit / Add buttons to your edit dialogs or pages.
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)]">
       <div className="flex flex-col gap-6">
         <ProfileCard
           eyebrow="About"
           title="Summary"
-          action={<CardAction label="Edit" ariaLabel="Edit summary" />}
+          action={
+            <CardAction
+              label="Edit"
+              ariaLabel="Edit summary"
+              onClick={() => onEdit({ kind: "summary" })}
+            />
+          }
         >
           {profile.summary ? (
-            <p className="text-xs font-regular font-inter line-height-sm text-text-secondary-color">
+            <p className="text-sm leading-relaxed font-inter text-text-secondary-color">
               {profile.summary}
             </p>
           ) : (
-            <p className="text-xs font-regular font-inter line-height-sm text-text-secondary-color ">
+            <p className="text-sm font-inter text-subtext-light">
               No summary added yet.
             </p>
           )}
@@ -34,7 +54,13 @@ export default function MasterProfileTab({ profile }: MasterProfileTabProps) {
         <ProfileCard
           eyebrow="Work history"
           title="Experience"
-          action={<CardAction label="Edit" ariaLabel="Edit experience" />}
+          action={
+            <CardAction
+              label="Edit"
+              ariaLabel="Edit experience"
+              onClick={() => onEdit({ kind: "experience" })}
+            />
+          }
         >
           {profile.experience.length === 0 ? (
             <p className="text-sm font-inter text-subtext-light">
@@ -65,9 +91,11 @@ export default function MasterProfileTab({ profile }: MasterProfileTabProps) {
                       {item.company}
                       {item.location ? ` · ${item.location}` : ""}
                     </p>
-                    <p className="text-vxs font-inter text-subtext-light">
-                      {item.period}
-                    </p>
+                    {item.period && (
+                      <p className="text-vxs font-inter text-subtext-light">
+                        {item.period}
+                      </p>
+                    )}
                     {item.description && (
                       <p className="mt-1 text-sm font-inter text-text-secondary-color">
                         {item.description}
@@ -83,7 +111,13 @@ export default function MasterProfileTab({ profile }: MasterProfileTabProps) {
         <ProfileCard
           eyebrow="Background"
           title="Education"
-          action={<CardAction label="Edit" ariaLabel="Edit education" />}
+          action={
+            <CardAction
+              label="Edit"
+              ariaLabel="Edit education"
+              onClick={() => onEdit({ kind: "education" })}
+            />
+          }
         >
           {profile.education.length === 0 ? (
             <p className="text-sm font-inter text-subtext-light">
@@ -101,9 +135,11 @@ export default function MasterProfileTab({ profile }: MasterProfileTabProps) {
                     <p className="text-sm font-inter text-text-secondary-color">
                       {item.institution}
                     </p>
-                    <p className="text-vxs font-inter text-subtext-light">
-                      {item.period}
-                    </p>
+                    {item.period && (
+                      <p className="text-vxs font-inter text-subtext-light">
+                        {item.period}
+                      </p>
+                    )}
                   </div>
                 </li>
               ))}
@@ -116,7 +152,13 @@ export default function MasterProfileTab({ profile }: MasterProfileTabProps) {
         <ProfileCard
           eyebrow="Your strengths"
           title="Skills"
-          action={<CardAction label="Edit" ariaLabel="Edit skills" />}
+          action={
+            <CardAction
+              label="Edit"
+              ariaLabel="Edit skills"
+              onClick={() => onEdit({ kind: "skills" })}
+            />
+          }
         >
           {profile.skills.length === 0 ? (
             <p className="text-sm font-inter text-subtext-light">
@@ -144,7 +186,17 @@ export default function MasterProfileTab({ profile }: MasterProfileTabProps) {
         <ProfileCard
           eyebrow="Credentials"
           title="Certifications"
-          action={<CardAction label="Add" ariaLabel="Add a certification" />}
+          action={
+            <CardAction
+              label={profile.certifications.length === 0 ? "Add" : "Edit"}
+              ariaLabel={
+                profile.certifications.length === 0
+                  ? "Add a certification"
+                  : "Edit certifications"
+              }
+              onClick={() => onEdit({ kind: "certifications" })}
+            />
+          }
         >
           {profile.certifications.length === 0 ? (
             <p className="text-sm font-inter text-subtext-light">
@@ -170,7 +222,13 @@ export default function MasterProfileTab({ profile }: MasterProfileTabProps) {
         <ProfileCard
           eyebrow="Contact"
           title="Contact details"
-          action={<CardAction label="Edit" ariaLabel="Edit contact details" />}
+          action={
+            <CardAction
+              label="Edit"
+              ariaLabel="Edit contact details"
+              onClick={() => onEdit({ kind: "contact" })}
+            />
+          }
         >
           <dl className="flex flex-col gap-4 text-sm font-inter">
             <ContactRow icon="mdi:email-outline" label="Email">
@@ -190,6 +248,9 @@ export default function MasterProfileTab({ profile }: MasterProfileTabProps) {
             </ContactRow>
           </dl>
         </ProfileCard>
+
+        <VisibilityCard visibility={visibility} />
+        <EmployerInterestCard stats={interest} />
       </div>
     </div>
   );

@@ -1,19 +1,36 @@
 "use client";
 
-import { useRef, useState, type KeyboardEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { Icon } from "@iconify/react";
 import InitialsBadge from "@/components/ui/InitialsBadge";
 import type { MasterProfile } from "@/lib/types/jobseeker-profile";
 import MasterProfileTab from "./Masterprofiletab";
 import JobProfilesTab from "./Jobprofilestab";
+import { EmployerInterestStats, ProfileEditTarget, ProfileVisibilityStatus } from "@/lib/types/profile-extras";
+import ProfileEditModals from "./profile/edit/ProfileEditModals";
 
 type TabId = "master" | "jobs" | "cv";
 
 interface ProfileViewProps {
   profile: MasterProfile;
+  visibility: ProfileVisibilityStatus;
+  interest: EmployerInterestStats;
 }
 
-export default function ProfileView({ profile }: ProfileViewProps) {
+async function persistProfile(next: MasterProfile): Promise<void> {
+  // TODO: send `next` to your API (for example PATCH /api/jobseeker/profile).
+  // Throw when the request fails so the modal shows its error message.
+  void next;
+}
+
+export default function ProfileView({
+  profile: initialProfile,
+  visibility,
+  interest,
+}: ProfileViewProps) {
+  const [profile, setProfile] = useState(initialProfile);
+  const [editing, setEditing] = useState<ProfileEditTarget | null>(null);
+  const [notice, setNotice] = useState("");
   const [active, setActive] = useState<TabId>("master");
   const tabRefs = useRef<Record<TabId, HTMLButtonElement | null>>({
     master: null,
@@ -21,12 +38,44 @@ export default function ProfileView({ profile }: ProfileViewProps) {
     cv: null,
   });
 
+  useEffect(() => {
+    if (!notice) return;
+    const timer = window.setTimeout(() => setNotice(""), 4000);
+    return () => window.clearTimeout(timer);
+  }, [notice]);
+
+  /** Saves a change, updates the page, then closes the modal. Throws on failure. */
+  const saveProfile = useCallback(
+    async (patch: Partial<MasterProfile>) => {
+      const next = { ...profile, ...patch };
+      await persistProfile(next);
+      setProfile(next);
+      setEditing(null);
+      setNotice("Profile updated.");
+    },
+    [profile],
+  );
+
+  const setDefaultJobProfile = async (id: string) => {
+    try {
+      await saveProfile({
+        jobProfiles: profile.jobProfiles.map((item) => ({
+          ...item,
+          isPrimary: item.id === id,
+        })),
+      });
+    } catch {
+      setNotice("Could not change your default job profile. Try again.");
+    }
+  };
+
   const tabs: { id: TabId; label: string; count?: number }[] = [
     { id: "master", label: "Master Profile" },
     { id: "jobs", label: "Job Profile", count: profile.jobProfiles.length },
     { id: "cv", label: "Generated CV" },
   ];
 
+ 
   const onKeyDown = (
     event: KeyboardEvent<HTMLButtonElement>,
     index: number,
@@ -97,6 +146,7 @@ export default function ProfileView({ profile }: ProfileViewProps) {
         <div className="flex flex-wrap gap-3">
           <button
             type="button"
+            onClick={() => setEditing({ kind: "intro" })}
             className="inline-flex items-center gap-2 rounded-md bg-primary-blue px-4 py-1.5 text-xs font-regular cursor-pointer font-inter text-white hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue"
           >
             <Icon icon="mdi:pencil-outline" aria-hidden="true" />
@@ -166,8 +216,22 @@ export default function ProfileView({ profile }: ProfileViewProps) {
         tabIndex={0}
         className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-blue"
       >
-        {active === "master" && <MasterProfileTab profile={profile} />}
-        {active === "jobs" && <JobProfilesTab profiles={profile.jobProfiles} />}
+        {active === "master" && (
+          <MasterProfileTab
+            profile={profile}
+            visibility={visibility}
+            interest={interest}
+            onEdit={setEditing}
+          />
+        )}
+        {active === "jobs" && (
+          <JobProfilesTab
+            profiles={profile.jobProfiles}
+            onEdit={(id) => setEditing({ kind: "jobProfile", id })}
+            onCreate={() => setEditing({ kind: "jobProfile", id: null })}
+            onSetDefault={setDefaultJobProfile}
+          />
+        )}
         {active === "cv" && (
           // TODO: replace with the Generated CV design and the real CV file.
           <div className="flex flex-col items-center gap-3 rounded-2xl border border-dashed border-subtext-gray2/30 px-6 py-16 text-center">
@@ -184,6 +248,27 @@ export default function ProfileView({ profile }: ProfileViewProps) {
               is set up.
             </p>
           </div>
+        )}
+      </div>
+
+      <ProfileEditModals
+        editing={editing}
+        profile={profile}
+        onClose={() => setEditing(null)}
+        onSave={saveProfile}
+      />
+
+      {/* Confirmation toast, also read out by screen readers. */}
+      <div
+        role="status"
+        aria-live="polite"
+        className="pointer-events-none fixed inset-x-4 bottom-6 z-50 flex justify-center sm:inset-x-auto sm:right-6 sm:justify-end"
+      >
+        {notice && (
+          <p className="pointer-events-auto inline-flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-3 text-sm font-inter text-white shadow-lg">
+            <Icon icon="mdi:check-circle-outline" aria-hidden="true" />
+            {notice}
+          </p>
         )}
       </div>
     </div>
