@@ -105,7 +105,7 @@ export default function ApplicationsList({
                   </time>
 
                   <span
-                    className={`min-w-24 shrink-0 rounded-full px-3 py-1 text-center text-vvxs font-semibold font-inter ${status.className}`}
+                    className={`min-w-24 shrink-0 rounded-full px-3 py-1 text-center text-vvxs font-medium font-inter ${status.className}`}
                   >
                     {status.label}
                   </span>
@@ -117,7 +117,7 @@ export default function ApplicationsList({
                         onClick={() => handleWithdraw(application)}
                         aria-label={`Withdraw application for ${application.jobTitle}`}
                         className="cursor-pointer text-vxs font-regular font-inter text-text-secondary-color underline hover:text-primary-blue"
-                      >
+                      > 
                         Withdraw
                       </button>
                     )}

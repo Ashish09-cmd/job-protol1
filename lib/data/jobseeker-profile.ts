@@ -34,6 +34,33 @@ export async function getSavedJobs(): Promise<SavedJob[]> {
       employmentType: "Internship",
       daysLeft: 14,
     },
+    {
+      id: "sj-4",
+      slug: "laravel-developer-intern",
+      title: "Laravel Developer Intern",
+      companyName: "Cloud Factory",
+      companySlug: "cloud-factory",
+      employmentType: "Internship",
+      daysLeft: 14,
+    },
+    {
+      id: "sj-5",
+      slug: "Video-developer",
+      title: "Video Developer Intern",
+      companyName: "Cloud Factory",
+      companySlug: "cloud-factory",
+      employmentType: "Internship",
+      daysLeft: 14,
+    },
+    {
+      id: "sj-6",
+      slug: "Podcast Host",
+      title: "Video Developer Intern",
+      companyName: "Cloud Factory",
+      companySlug: "cloud-factory",
+      employmentType: "Internship",
+      daysLeft: 14,
+    },
   ];
 }
 
