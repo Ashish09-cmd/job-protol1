@@ -3,6 +3,9 @@ import type { JobProfile } from "@/lib/types/jobseeker-profile";
 
 interface JobProfilesTabProps {
   profiles: JobProfile[];
+  onEdit: (id: string) => void;
+  onCreate: () => void;
+  onSetDefault: (id: string) => void;
 }
 
 const MAX_JOB_PROFILES =3; 
@@ -10,7 +13,12 @@ const MAX_JOB_PROFILES =3;
 const buttonBase =
   "inline-flex items-center justify-center rounded-md px-4 py-2 text-vxs font-medium font-inter transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue";
 
-export default function JobProfilesTab({ profiles }: JobProfilesTabProps) {
+export default function JobProfilesTab({
+  profiles,
+  onEdit,
+  onCreate,
+  onSetDefault,
+}: JobProfilesTabProps) {
   const visibleProfile = profiles.slice(0, MAX_JOB_PROFILES);
   const canCreateProfile = profiles.length < MAX_JOB_PROFILES;
   // TODO: wire Edit Profile, Set Default and Create to your API / routes.
@@ -37,9 +45,11 @@ export default function JobProfilesTab({ profiles }: JobProfilesTabProps) {
                 )}
               </div>
 
-              <p className="text-vxs font-regular font-inter line-height-sm text-text-secondary-color">
-                {profile.summary}
-              </p>
+              {profile.summary && (
+                <p className="text-vxs font-regular font-inter line-height-sm text-text-secondary-color">
+                  {profile.summary}
+                </p>
+              )}
             </div>
 
             <ul role="list" className="flex flex-wrap gap-2">
@@ -56,6 +66,7 @@ export default function JobProfilesTab({ profiles }: JobProfilesTabProps) {
           <div className="mt-auto flex gap-2 ">
             <button
               type="button"
+              onClick={() => onEdit(profile.id)}
               aria-label={`Edit ${profile.title} profile`}
               className={`${buttonBase} w-full bg-primary-blue text-white hover:opacity-90`}
             >
@@ -64,6 +75,7 @@ export default function JobProfilesTab({ profiles }: JobProfilesTabProps) {
             {!profile.isPrimary && (
               <button
                 type="button"
+                onClick={() => onSetDefault(profile.id)}
                 aria-label={`Set ${profile.title} as default profile`}
                 className={`${buttonBase} border w-full border-subtext-gray2/30 text-text-heading hover:bg-blue-50/60`}
               >
