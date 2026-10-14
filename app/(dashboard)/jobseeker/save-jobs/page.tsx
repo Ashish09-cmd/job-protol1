@@ -14,10 +14,10 @@ export default async function SavedJobsPage() {
         <p className="text-vxs font-medium uppercase tracking-widest font-inter text-subtext-light">
           For you
         </p>
-        <h1 className="text-lg-xl font-semibold font-manrope text-text-heading">
+        <h1 className="text-xl font-semibold font-manrope text-text-heading">
           Saved Jobs
         </h1>
-        <p className="text-sm font-inter text-text-secondary-color">
+        <p className="text-sm line-height-sm font-inter text-text-secondary-color">
           Jobs you&apos;ve bookmarked for later. Apply before they close.
         </p>
       </header>

@@ -88,7 +88,7 @@ export default function DashboardShell({
           <main id="main-content" className="flex-1">
             {children}
           </main>
-          <footer className="border-t border-subtext-gray2/30 py-6 text-center text-sm font-regular font-inter text-text-secondary-color">
+          <footer className="border-t border-subtext-gray2/30 py-6 text-center text-xs font-regular font-inter line-height-sm text-text-secondary-color">
             © {new Date().getFullYear()} Broadway Jobs. All rights reserved
           </footer>
         </div>

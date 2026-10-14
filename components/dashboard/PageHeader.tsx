@@ -18,10 +18,10 @@ export default function PageHeader({
           {eyebrow}
         </p>
       )}
-      <h1 className="text-xl font-semibold font-manrope text-text-heading">
+      <h1 className="text-xl font-bold font-manrope text-text-heading line-height-2xl">
         {title}
       </h1>
-      <p className="text-sm font-regular font-inter text-text-secondary-color">
+      <p className="text-xs line-height-sm font-regular font-inter text-text-secondary-color">
         {description}
       </p>
     </div>
