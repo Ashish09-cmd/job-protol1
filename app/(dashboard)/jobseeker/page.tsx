@@ -10,7 +10,7 @@ import {
   getJobseekerOverview,
 } from "@/lib/data/jobseeker-overview";
 
-export const metadata: Metadata = { title: "Overview" };
+export const metadata: Metadata = { title: "Overview | Broadway Job" };
 
 // The numbers are different for every logged-in person, so never pre-build this page.
 export const dynamic = "force-dynamic";
