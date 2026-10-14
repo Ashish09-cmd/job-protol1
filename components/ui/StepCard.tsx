@@ -15,7 +15,7 @@ export default function StepCard({
   description,
 }: StepCardProps) {
   return (
-    <li className="py-6 px-4 bg-white rounded-md border border-separator4">
+    <li className="py-6 px-4 bg-white rounded-xl border border-separator4">
       <article className="flex flex-col gap-3.5 items-center text-center">
         {/* Decorative: the surrounding <ol> already conveys the order. */}
         <span

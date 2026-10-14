@@ -33,13 +33,13 @@ export default function GetStart() {
           <div className="flex flex-wrap items-center gap-6">
             <Link
               href={JOB_SEEKER_HREF}
-              className="py-2 px-4 rounded-md hover:bg-primary-blue/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue bg-primary-blue text-sm font-medium font-inter line-height-sm text-white"
+              className="py-2 px-4 rounded-md hover:bg-primary-blue/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue bg-primary-blue text-xs font-regular font-inter line-height-sm text-white"
             >
               I’m looking for the job
             </Link>
             <Link
               href={COMPANY_HREF}
-              className="py-2 px-4 rounded-md border transition-all duration-100 hover:bg-primary-blue hover:text-white border-primary-blue text-sm font-medium font-inter line-height-sm text-primary-blue"
+              className="py-2 px-4 rounded-md border transition-all duration-100 hover:bg-primary-blue hover:text-white border-primary-blue text-xs font-regular font-inter line-height-sm text-primary-blue"
             >
               I’m looking for talent
             </Link>
