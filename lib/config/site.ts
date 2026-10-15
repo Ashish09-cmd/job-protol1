@@ -30,8 +30,8 @@ export const siteConfig = {
   header_logo_alt: "Broadway Kids",
   header_logo_width: 144,
   header_logo_height: 50,
-  footer_logo: "flogo.png",
-  footer_logo_alt: "Broadway Kids",
+  footer_logo: "footerlogo.png",
+  footer_logo_alt: "Broadway Jobs",
   sitemap_update_date: "2026-05-20T12:07:12Z",
   level_icon: {
     beginner: "ph:baby-bold",
