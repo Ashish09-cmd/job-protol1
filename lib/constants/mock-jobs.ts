@@ -37,11 +37,11 @@ const TEMPLATES = [
     altIndustry: "creative-designing-graphics",
   },
   {
-    title: "Junior Fullstack Developer",
+    title: "Junior Fullstack Developer ",
     company: {
       name: "Peakora Tech & Workforce Solutions",
       slug: "peakora-tech-workforce-solutions",
-      logo: "/assets/partners/code-himalaya.jpg",
+      logo: "/assets/partners/helvetas-nepal.jpg",
     },
     industry: "it-telecom-services",
     altIndustry: "administration-development",
