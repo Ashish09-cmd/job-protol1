@@ -69,21 +69,21 @@ export default function Modal({
         if (event.target === ref.current) onClose();
       }}
       className={`m-auto w-[calc(100%-2rem)] ${
-        size === "lg" ? "max-w-2xl" : "max-w-lg"
+        size === "lg" ? "max-w-3xl" : "max-w-xl"
       } overflow-hidden rounded-2xl border border-subtext-gray2/30 bg-white p-0 shadow-2xl backdrop:bg-slate-900/40 backdrop:backdrop-blur-[2px]`}
     >
       {open && (
         <div className="flex max-h-[85vh] flex-col">
           <header className="flex items-start justify-between gap-4 border-b border-subtext-gray2/30 px-6 py-5">
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-2">
               <h2
                 id={titleId}
-                className="text-lg font-bold font-manrope text-text-heading"
+                className="text-md font-bold font-manrope text-text-heading"
               >
                 {title}
               </h2>
               {description && (
-                <p className="text-sm font-inter text-text-secondary-color">
+                <p className="text-xs font-inter text-text-secondary-color line-height-sm">
                   {description}
                 </p>
               )}
@@ -151,14 +151,14 @@ export function ModalForm({
         <button
           type="button"
           onClick={onCancel}
-          className="rounded-md border border-subtext-gray2/30 px-4 py-2 text-sm font-inter text-text-heading transition-colors hover:bg-blue-50/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue"
+          className="rounded-md border border-subtext-gray2/30 px-4 py-2 text-xs font-inter text-text-heading transition-colors hover:bg-blue-50/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue"
         >
           Cancel
         </button>
         <button
           type="submit"
           disabled={saving}
-          className="inline-flex items-center gap-2 rounded-md bg-primary-blue px-5 py-2 text-sm font-medium font-inter text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue"
+          className="inline-flex items-center gap-2 rounded-md bg-primary-blue px-5 py-2 text-xs font-regular font-inter text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue"
         >
           {saving && (
             <Icon

@@ -23,7 +23,7 @@ export default function Footer() {
           <div className="flex flex-col gap-6 sm:col-span-2 lg:col-span-1">
             <Link href={"/"} className="logo cursor-pointer">
                   <img
-                    src={`${siteConfig.footer_logo}`}
+                    src={`/${siteConfig.footer_logo}`}
                     alt={`${siteConfig.footer_logo_alt}`}
                     loading="eager"
                   />
