@@ -4,7 +4,7 @@ import { useId, useState, type KeyboardEvent } from "react";
 import { Icon } from "@iconify/react";
 
 const inputBase =
-  "w-full rounded-lg border bg-white px-3.5 py-2.5 text-sm font-inter text-text-heading outline-none transition-colors placeholder:text-subtext-light focus:ring-2";
+  "w-full rounded-lg border bg-white px-3.5 py-2.5 text-xs font-inter text-text-heading outline-none transition-colors placeholder:text-subtext-light focus:ring-2";
 const inputOk =
   "border-subtext-gray2/30 focus:border-primary-blue focus:ring-primary-blue/20";
 const inputBad = "border-red-500 focus:border-red-500 focus:ring-red-500/20";

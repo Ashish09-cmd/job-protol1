@@ -227,7 +227,9 @@ const Header = () => {
               <div className="flex-1">
                 <div className="flex justify-between items-center">
                   <ul className="flex items-center gap-4">
-                    <li className="text-sm font-regular">Find Jobs</li>
+                    <li className="text-sm font-regular">
+                      <Link href={"/category"}>Find Jobs</Link>
+                    </li>
                     <li className="relative dropdown-menu">
                       <button
                         onMouseEnter={() => setIsCoursesDropdownOpen(true)}
@@ -345,9 +347,7 @@ const Header = () => {
                       </div>
                     </li>
                     <li>
-                      <button
-                        className="flex items-center font-regular gap-1 px-4 py-3 text-sm font-inter text-text-subtext cursor-pointer hover:bg-[#F2F6FC] duration-100 rounded-lg"
-                      >
+                      <button className="flex items-center font-regular gap-1 px-4 py-3 text-sm font-inter text-text-subtext cursor-pointer hover:bg-[#F2F6FC] duration-100 rounded-lg">
                         Blog
                         <Icon
                           icon="meteor-icons:angle-down"
