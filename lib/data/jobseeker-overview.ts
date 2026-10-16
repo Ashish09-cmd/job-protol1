@@ -78,7 +78,7 @@ export async function getJobseekerOverview(): Promise<JobseekerOverview> {
       },
     ],
     viewers: {
-      totalThisMonth: 11,
+      totalThisMonth: 0,
       recent: [
         {
           id: "v-1",
