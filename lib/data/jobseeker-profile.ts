@@ -66,19 +66,19 @@ export async function getSavedJobs(): Promise<SavedJob[]> {
 
 export async function getFollowedCompanies(): Promise<FollowedCompany[]> {
   return [
-    {
-      id: "fc-1",
-      slug: "broadway-infosys",
-      name: "Broadway Infosys",
-      newOpenings: 4,
-    },
-    { id: "fc-2", slug: "studio-nepal", name: "Studio Nepal", newOpenings: 1 },
-    {
-      id: "fc-3",
-      slug: "cloud-factory",
-      name: "Cloud Factory",
-      newOpenings: 0,
-    },
+    // {
+    //   id: "fc-1",
+    //   slug: "broadway-infosys",
+    //   name: "Broadway Infosys",
+    //   newOpenings: 4,
+    // },
+    // { id: "fc-2", slug: "studio-nepal", name: "Studio Nepal", newOpenings: 1 },
+    // {
+    //   id: "fc-3",
+    //   slug: "cloud-factory",
+    //   name: "Cloud Factory",
+    //   newOpenings: 0,
+    // },
   ];
 }
 
