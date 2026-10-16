@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Icon } from "@iconify/react";
 import InitialsBadge from "@/components/ui/InitialsBadge";
 import type { FollowedCompany } from "@/lib/types/jobseeker-profile";
+import EmptyState from "@/components/ui/EmptyState";
 
 interface FollowingListProps {
   initialCompanies: FollowedCompany[];
@@ -30,19 +31,12 @@ export default function FollowingList({
 
   if (companies.length === 0) {
     return (
-      <div className="flex flex-col items-center gap-3 rounded-2xl border border-dashed border-subtext-gray2/30 px-6 py-16 text-center">
-        <Icon
-          icon="mdi:office-building-outline"
-          className="text-4xl text-subtext-light"
-          aria-hidden="true"
-        />
-        <p className="text-lg-sm font-semibold font-manrope text-text-heading">
-          You aren&apos;t following any companies
-        </p>
-        <p className="max-w-sm text-sm font-inter text-text-secondary-color">
-          Follow a company to get an alert when it opens a new role.
-        </p>
-      </div>
+      <EmptyState
+        icon="fluent-mdl2:people"
+        title="Not following any companies yet"
+        description="Follow companies to stay in the loop on new job openings, company updates, and hiring events. You'll see them all here."
+        action={{ label: "Discover Companies", href: "/category" }}
+      />
     );
   }
 

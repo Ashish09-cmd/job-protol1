@@ -36,12 +36,20 @@ export default function DashboardTopbar({
         </button>
 
         <nav aria-label="Breadcrumb">
-          <ol className="flex items-center gap-1 text-sm font-regular font-inter">
-            <li className="text-text-secondary-color">Workspace</li>
-            <li aria-hidden="true" className="text-text-secondary-color">
+          <ol className="flex items-center gap-px text-sm font-regular font-inter">
+            <li className="text-subtext-gray3 font-medium font-manrope line-height-2xl ">
+              Workspace
+            </li>
+            <li
+              aria-hidden="true"
+              className="text-subtext-gray3 font-medium font-manrope line-height-2xl"
+            >
               /
             </li>
-            <li aria-current="page" className="truncate text-text-heading">
+            <li
+              aria-current="page"
+              className="text-subtext-primary-color font-medium font-manrope line-height-2xl truncate "
+            >
               {getPageTitle(pathname)}
             </li>
           </ol>
