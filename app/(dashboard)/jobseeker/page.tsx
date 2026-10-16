@@ -64,7 +64,7 @@ export default async function JobseekerOverviewPage() {
       </ul>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)]">
-        <ApplicationTracker applications={overview.applications} />
+        <ApplicationTracker applications={overview.applications} /> 
         <ProfileViewers viewers={overview.viewers} />
         <JobPreferencesCard
           preferences={overview.preferences}

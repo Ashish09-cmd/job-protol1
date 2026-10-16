@@ -10,6 +10,7 @@ import type {
   FollowedCompanyPreview,
   SavedJobPreview,
 } from "@/lib/types/jobseeker-dashboard";
+import EmptyState from "@/components/ui/EmptyState";
 
 type Tab = "following" | "saved";
 
@@ -105,15 +106,12 @@ export default function FollowingSavedCard({
               ))}
             </ul>
           ) : (
-            <p className="py-6 text-center text-sm font-regular font-inter text-text-secondary-color">
-              You have no saved jobs yet.{" "}
-              <Link
-                href="/search"
-                className="text-primary-blue hover:underline"
-              >
-                Browse jobs
-              </Link>
-            </p>
+            <EmptyState
+              icon="mdi:bookmark-outline"
+              title="No saved jobs yet"
+              description="Browse jobs and bookmark the ones you like. They'll show up here for quick access."
+              action={{ label: "Browse jobs", href: "/search" }}
+            />
           )
         ) : companies.length > 0 ? (
           <ul role="list" className="flex flex-col gap-4">
@@ -148,9 +146,12 @@ export default function FollowingSavedCard({
             ))}
           </ul>
         ) : (
-          <p className="py-6 text-center text-sm font-regular font-inter text-text-secondary-color">
-            You aren’t following any companies yet.
-          </p>
+          <EmptyState
+            icon="mdi:office-building-outline"
+            title="Not following any companies yet"
+            description="Follow companies to get alerts when they post new openings."
+            action={{ label: "Browse jobs", href: "/search" }}
+          />
         )}
       </div>
     </DashboardCard>

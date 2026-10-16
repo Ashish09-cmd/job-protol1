@@ -3,6 +3,7 @@ import Avatar from "@/components/ui/Avatar";
 import DashboardCard from "@/components/dashboard/DashboardCard";
 import { formatRelativeTime } from "@/lib/utils/format-date";
 import type { JobseekerOverview } from "@/lib/types/jobseeker-dashboard";
+import EmptyState from "@/components/ui/EmptyState";
 
 /** How many avatars are stacked before the "+N" circle. */
 const AVATAR_STACK_SIZE = 4;
@@ -80,10 +81,12 @@ export default function ProfileViewers({ viewers }: ProfileViewersProps) {
           </ul>
         </>
       ) : (
-        <p className="py-8 text-center text-sm font-regular font-inter text-text-secondary-color">
-          No employers have viewed your profile this month. Completing your
-          profile helps you get noticed.
-        </p>
+        <EmptyState
+          icon="mdi:eye"
+          title="No profile views yet"
+          description="Once your profile is complete and you're open to work, employers will find you here."
+          action={{ label: "Complete profile", href: "/jobseeker/me" }}
+        />
       )}
     </DashboardCard>
   );

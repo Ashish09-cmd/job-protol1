@@ -9,6 +9,7 @@ import type {
   ApplicationStatus,
   TrackedApplication,
 } from "@/lib/types/jobseeker-dashboard";
+import EmptyState from "@/components/ui/EmptyState";
 
 /** Label and colours of each status. The label is always shown, so colour is never the only signal. */
 const STATUS_STYLES: Record<
@@ -123,17 +124,23 @@ export default function ApplicationTracker({
           })}
         </ul>
       ) : (
-        <div className="flex flex-col items-center gap-3 py-8 text-center">
-          <p className="text-sm font-regular font-inter text-text-secondary-color">
-            You haven’t applied to any jobs yet.
-          </p>
-          <Link
-            href="/search"
-            className="text-sm font-medium font-inter text-primary-blue hover:underline"
-          >
-            Browse jobs
-          </Link>
-        </div>
+        // <div className="flex flex-col items-center gap-3 py-8 text-center">
+        //   <p className="text-sm font-regular font-inter text-text-secondary-color">
+        //      You haven’t applied to any jobs yet.
+        //   </p>
+        //   <Link
+        //     href="/search"
+        //     className="text-sm font-medium font-inter text-primary-blue hover:underline"
+        //   >
+        //     Browse jobs
+        //   </Link>
+        // </div>
+        <EmptyState
+          icon="cil:briefcase"
+          title="No applications yet"
+          description="When you apply to jobs, they'll appear here so you can track every stage."
+          action={{ label: "Browse jobs", href: "/search" }}
+        />
       )}
     </DashboardCard>
   );

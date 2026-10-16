@@ -49,7 +49,7 @@ export default function DashboardCard({
         <div className="flex items-center justify-between gap-4">
           <h2
             id={headingId}
-            className="text-lg-sm font-medium font-manrope text-text-heading"
+            className="text-lg font-semibold line-height-2xl font-manrope text-text-heading"
           >
             {title}
           </h2>
