@@ -9,6 +9,7 @@ import { APPLICATION_FILTERS, ApplicationFilter } from "@/lib/constants/applicat
 import { filterApplications } from "@/lib/utils/filter-applications";
 import FilterPills from "@/components/ui/FilterPills";
 import { STATUS_STYLES, WITHDRAWABLE_STATUSES } from "@/lib/constants/application-status";
+import EmptyState from "@/components/ui/EmptyState";
 
 const ID_PREFIX = "applications";
 
@@ -117,7 +118,7 @@ export default function ApplicationsList({
                         onClick={() => handleWithdraw(application)}
                         aria-label={`Withdraw application for ${application.jobTitle}`}
                         className="cursor-pointer text-vxs font-regular font-inter text-text-secondary-color underline hover:text-primary-blue"
-                      > 
+                      >
                         Withdraw
                       </button>
                     )}
@@ -127,17 +128,12 @@ export default function ApplicationsList({
             })}
           </ul>
         ) : items.length === 0 ? (
-          <div className="flex flex-col items-center gap-3 py-8 text-center">
-            <p className="text-sm font-regular font-inter text-text-secondary-color">
-              You haven’t applied to any jobs yet.
-            </p>
-            <Link
-              href="/search"
-              className="text-sm font-medium font-inter text-primary-blue hover:underline"
-            >
-              Browse jobs
-            </Link>
-          </div>
+            <EmptyState
+              icon="mdi:bookmark-outline"
+              title="No applications yet"
+              description="When you apply to jobs, they'll appear here so you can track every stage."
+              action={{ label: "Browse jobs", href: "/categoy" }}
+            />
         ) : (
           <p className="py-8 text-center text-sm font-regular font-inter text-text-secondary-color">
             No applications in this stage yet.
