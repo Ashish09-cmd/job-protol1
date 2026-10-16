@@ -9,6 +9,7 @@ import { getPageTitle } from "@/lib/config/jobseeker-nav";
 import type { JobseekerUser } from "@/lib/types/jobseeker-dashboard";
 import DashboardSearch from "./DashboardSearch";
 
+
 interface DashboardTopbarProps {
   user: JobseekerUser;
   /** Number of unread notifications. The dot only shows when above 0. */
