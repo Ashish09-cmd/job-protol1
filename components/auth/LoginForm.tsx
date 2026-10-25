@@ -6,14 +6,18 @@ import { useRouter } from "next/navigation";
 import { loginSchema, LoginValues } from "@/lib/validation/auth";
 import Input from "../ui/Input";
 import Button from "../ui/button/Button";
+import { JOBSEEKER_HOME } from "@/lib/config/jobseeker-nav";
+import { FORGOT_PASSWORD } from "@/lib/constants/auth-routes";
 
 interface LoginFormProps {
   /** Where to go after a successful login. The jobseeker dashboard by default. */
   redirectTo?: string;
+  forgotPasswordHref?: string;
 }
 
 export default function LoginForm({
-  redirectTo = "/jobseeker",
+  redirectTo = JOBSEEKER_HOME,
+  forgotPasswordHref = FORGOT_PASSWORD,
 }: LoginFormProps) {
   const router = useRouter();
   const {
@@ -65,7 +69,7 @@ export default function LoginForm({
         />
         <div>
           <Link
-            href="/forgot-password"
+            href={forgotPasswordHref}
             className="text-xs font-regular underline line-height-2xl text-primary-danger font-manrope"
           >
             Forgot Password?
@@ -80,7 +84,7 @@ export default function LoginForm({
           </p>
         )}
         <Button type="submit" fullWidth loading={isSubmitting}>
-          Log in 
+          Log in
         </Button>
       </div>
     </form>
