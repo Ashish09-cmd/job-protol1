@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
+import AuthSplitLayout from "@/components/auth/AuthSplitLayout";
 import LoginForm from "@/components/auth/LoginForm";
 import Button from "@/components/ui/button/Button";
-import AuthSplitLayout from "@/components/auth/AuthSplitLayout";
-import { EMPLOYER_HOME, EMPLOYER_REGISTER } from "@/lib/constants/auth-routes";
+import {
+  EMPLOYER_FORGOT_PASSWORD,
+  EMPLOYER_HOME,
+  EMPLOYER_REGISTER,
+} from "@/lib/constants/auth-routes";
 
 export const metadata: Metadata = {
   title: "Employer login",
@@ -30,7 +34,10 @@ export default function CompanyLogin() {
 
       <div className="flex flex-col gap-7">
         {/* After a successful login the user goes to the employer dashboard. */}
-        <LoginForm redirectTo={EMPLOYER_HOME} />
+        <LoginForm
+          redirectTo={EMPLOYER_HOME}
+          forgotPasswordHref={EMPLOYER_FORGOT_PASSWORD}
+        />
 
         <div className="flex items-center justify-around gap-2">
           <div className="h-px w-full bg-[#dee2e6]" />
