@@ -4,10 +4,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { loginSchema, LoginValues } from "@/lib/validation/auth";
+import {
+  JOBSEEKER_FORGOT_PASSWORD,
+  JOBSEEKER_HOME,
+} from "@/lib/constants/auth-routes";
 import Input from "../ui/Input";
 import Button from "../ui/button/Button";
-import { JOBSEEKER_HOME } from "@/lib/config/jobseeker-nav";
-import { FORGOT_PASSWORD } from "@/lib/constants/auth-routes";
 
 interface LoginFormProps {
   /** Where to go after a successful login. The jobseeker dashboard by default. */
@@ -17,7 +19,7 @@ interface LoginFormProps {
 
 export default function LoginForm({
   redirectTo = JOBSEEKER_HOME,
-  forgotPasswordHref = FORGOT_PASSWORD,
+  forgotPasswordHref = JOBSEEKER_FORGOT_PASSWORD,
 }: LoginFormProps) {
   const router = useRouter();
   const {
